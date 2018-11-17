@@ -27,7 +27,7 @@
           <h5>Add Category</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="" method="post" class="form-horizontal">
+          <form action="" method="post" class="form-horizontal" enctype="multipart/form-data"  >
               <div class="control-group">
               <label class="control-label">Parent Category :</label>
               <div class="controls">
@@ -51,6 +51,13 @@
                 <input type="text" class="span6" name="url_slug" id="url_slug" value="<?php echo set_value('url_slug'); ?>"readonly placeholder="Enter Url Slug" />
               </div>
             </div>
+
+            <div class="control-group">
+              <label class="control-label">Category Banner Image :</label>
+              <div class="controls">
+                <input type="file" class="span6" name="image"  />
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label">Short Description :</label>
               <div class="controls">
@@ -61,7 +68,7 @@
             <div class="control-group">
               <label class="control-label">Description :</label>
               <div class="controls">
-                <input type="text" class="span6" name="CatDescription" placeholder="Enter CatDescription" />
+                <input type="textarea" class="span6" name="CatDescription" placeholder="Enter CatDescription" />
               </div>
             </div>
 

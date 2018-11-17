@@ -38,7 +38,7 @@
          </ul>
       </li>
 
-      <li class="submenu">
+     <!-- <li class="submenu">
          <a href="#"><i class="icon icon-leaf"></i> <span>Manage Language</span></a>
          <ul>
             <li><a href="<?php echo base_url('admin/language/listing'); ?>">Manage Language</a></li>
@@ -71,7 +71,7 @@
          <ul>
             <li><a href="<?php echo base_url('admin/cms/listing'); ?>">Manage CMS</a></li>
          </ul>
-      </li>
+      </li>-->
         <li class="submenu">
          <a href="#"><i class="icon icon-edit"></i> <span>Admin</span></a>
          <ul>

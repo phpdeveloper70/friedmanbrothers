@@ -49,9 +49,7 @@ class Testimonial  extends CI_Controller
 				                'status'           => $status,
 				                'created_date'     => date('Y-m-d h:i:s')
 		          );
-
-					
-				}
+               }
 			   	
 				$this->Testimonial_model->add_testimonial($data);
 				$this->session->set_flashdata('msg','<div class="alert alert-success">record has been successfully saved.</div>');
@@ -74,10 +72,7 @@ class Testimonial  extends CI_Controller
 		
 		if(isset($_POST['submit']))
 		{
-				
-				
-					
-						$file_name = $_FILES['image']['name'];
+				        $file_name = $_FILES['image']['name'];
 						$tmp_name = $_FILES['image']['tmp_name'];
 						$path = 'images/testimonials/'.$file_name;
 						move_uploaded_file($tmp_name,$path);
