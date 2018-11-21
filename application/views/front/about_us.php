@@ -28,7 +28,24 @@
 				<!-- Content -->
 
 				<div class="content-description">
-					<?php echo $result[2]->html?>
+					<p>Friedman Brothers is the oldest and most prestigious manufacturer of handcrafted decorative
+					wall art in the United States. The company has been family owned and operated for over 100 years,
+					spending much of that history perfecting the
+					art of Decorative Mirrors, Consoles, Sconces, Brackets, Cornices, Window Treatments and More.</p>
+
+					<p>The company was founded by two brothers who emigrated from England in 1903. They brought with
+					them an outstanding talent for old-world elegant design and the skilled crafts of wood carving and
+					finishing, with special emphasis on Old World gold leafing. Through hard work and an unyielding commitment
+					to design and quality, the Friedman brothers
+					became the interior designer's supplier of choice for elegant and sophisticated decorative wall art.</p>
+
+					<p>The brothers then passed down their craft through the generations where this same original
+					commitment to design and quality can be found in the company's products today.</p>
+
+					<p>Friedman Brothers decorative art is so high in quality that it can be found in the most prestigious
+					places in the World, including Museums, The Vatican and The White House. From the best hotels to private
+					residences,
+					interior designers specify Friedman products to bring a touch of prestige and elegance to their designs.</p>
 
 				</div>
 			</div>
@@ -38,12 +55,12 @@
 			<div class="side-bar">
 				<div class="top-side-links">
 					<ul class="list-group side-link">
-					  <li class="list-group-item"><a href="index.php?pid=14" class="active">About Us </a></li>
-					  <li class="list-group-item"><a href="index.php?pid=15">Products </a></li>
-					  <li class="list-group-item"><a href="index.php?pid=16">Custom </a></li>
-					  <li class="list-group-item"><a href="index.php?pid=17">FAQ </a></li>
-					  <li class="list-group-item"><a href="index.php?pid=18">Contact Us </a></li>
-					  <li class="list-group-item"><a href="index.php?pid=19">Handcrafting Process </a></li>
+					  <li class="list-group-item"><a href="#" class="active">About Us </a></li>
+					  <li class="list-group-item"><a href="#">Products </a></li>
+					  <li class="list-group-item"><a href="#">Custom </a></li>
+					  <li class="list-group-item"><a href="#">FAQ </a></li>
+					  <li class="list-group-item"><a href="#">Contact Us </a></li>
+					  <li class="list-group-item"><a href="#">Handcrafting Process </a></li>
 					</ul>
 				</div>
 			</div> <!-- link End --->
