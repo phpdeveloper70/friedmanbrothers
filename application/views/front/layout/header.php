@@ -11,8 +11,13 @@
                <li class="list-inline-item"><a href="<?php echo base_url('user/myaccount'); ?>">My Account </a></li>
                <li class="list-inline-item"><a href="#">Architects & Designers  </a></li>
                <li class="list-inline-item"><a href="<?php echo base_url('support'); ?>">Support  </a></li>
+               <?php $user_id = $this->session->userdata('USER_ID'); ?>
+               <?php if(empty($user_id)){ ?>
                <li class="list-inline-item"><a href="<?php echo base_url('user/login'); ?>">Login</a></li>
                <li class="list-inline-item"><a href="<?php echo base_url('user/register'); ?>">Register</a></li>
+             <?php }else{ ?>
+               <li class="list-inline-item"><a href="<?php echo base_url('user/logout'); ?>">Logout</a></li>
+             <?php } ?>
             </ul>
          </div>
       </div>
@@ -41,7 +46,6 @@
             </form>
             <ul class="list-inline navbar-right right-item desktop">
                <li class="list-inline-item"><a href="#"><i class="fa fa-heart"></i></a></li>
-               <li class="list-inline-item"><a href="javascript:void(0)" onclick="openNav()" class="cart-bag"><i class="fa fa-shopping-cart"></i> <span class="badge">1</span></a></li>
             </ul>
          </div>
       </nav>
