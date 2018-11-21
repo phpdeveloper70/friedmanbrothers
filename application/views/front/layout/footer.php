@@ -1,3 +1,4 @@
+
 <footer>
    <div class="footer">
       <div class="container">
@@ -56,14 +57,15 @@
                <div class="footer-title">
                   <h4>News and Updates</h4>
                   <div class="footer-content">
-                     <form class="newsletter" method="post">
+                     <form class="newsletter" action="" method="post" >
                         <div class="form-group">
                            <label>Join to Receive Updates on Promotions</label>
-                           <input type="text" name="newletter" placeholder="Enter Your Email Address" />
+                           <input type="text" name="email" placeholder="Enter Your Email Address" />
                            <input type="submit" name="submit" value="Signup For Newsletter" />
                         </div>
                      </form>
                   </div>
+                  <?php echo validation_errors(); ?>
                </div>
             </div>
          </div>

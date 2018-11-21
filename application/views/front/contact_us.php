@@ -1,6 +1,14 @@
 <!doctype html>
 <html>
    <head>
+    <style>.reply-area form a.reply-btn {
+    background: #2C2B5E;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 8px 25px;
+    font-weight: 700;
+    display: inline-block;
+}</style>
       <?php $this->load->view('front/layout/head'); ?>
    </head>
    <body>
@@ -72,30 +80,39 @@
                         <div class="reply-area">
                             <h3>LEAVE A message</h3>
                             <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
-                            <form id="contact-form" action="mail.php" method="post">
+                            <form id="contact-form"  method="post" >
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p>Name</p>
-                                        <input type="text" name="name" id="name">
+                                        <input type="text" name="name"  id="name">
+                                        <?php echo form_error('name'); ?>
                                     </div>
                                     <div class="col-md-6">
                                         <p>Email</p>
-                                        <input type="text" name="email" id="email">
+                                        <input type="text" name="email"  id="email">
+                                        <?php echo form_error('email'); ?>
                                     </div>
 									 <div class="col-md-6">
                                         <p>Phone</p>
-                                        <input type="text" name="phone" id="phone">
+                                        <input type="text" name="mobile" max="10"  id="mobile">
+                                        <?php echo form_error('mobile'); ?>
                                     </div>
                                     <div class="col-md-6">
                                         <p>Subject</p>
-                                        <input type="text" name="subject" id="subject">
+                                        <input type="text" name="subject"  id="subject">
+                                         <?php echo form_error('subject'); ?>
 									</div>
 									  <div class="col-md-12">
                                         <p>Massage</p>
                                         <textarea name="message" id="message" cols="15" rows="5"></textarea>
+                                         <?php echo form_error('message'); ?>
                                     </div>
                                 </div>
-                                <a class="reply-btn" href="#" data-text="send"><span>send message</span></a>
+                                <div class="reply-btn">
+            <input type="submit" name="submit" class="style-input submit-style" value="send message">
+          </div>
+                 
+                            <!--  <a  class="reply-btn" href="#" data-text="send"><span>send message</span></a>  -->
                                 <p class="form-messege"></p>
                             </form>
                         </div>

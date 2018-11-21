@@ -74,4 +74,5 @@ class Front_model extends CI_Model
       return $data->result();
   }
 
+
 }
