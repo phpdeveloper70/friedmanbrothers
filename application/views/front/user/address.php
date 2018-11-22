@@ -37,12 +37,29 @@
                             <div class="col-md-8">
                                 <!-- Tab panes -->
                                 <div class="tab-content dashboard-content">
-                                    <div class="tab-pane active"  id="dashboard">
-                                        <h3>Dashboard </h3>
-                                        <p>From your account dashboard. you can easily check &amp; view your recent orders, manage your
-										shipping and billing addresses and edit your password and account details.</p>
+                                    <div class="tab-pane active"  id="address">
+                                         <h4 class="billing-address">Address 1</h4>
+                                       
+                                        <p><?php echo $result[0]->address_one ;?> </p>  
+                                        <?php if($result[0]->address_two !=""){?>
+                                         <h4 class="billing-address">Address 2</h4>
+                                        
+                                       
+                                        <p><?php echo $result[0]->address_two ;?> </p> 
+                                         <?php }?>
                                     </div>
+                                    <?php if($result[0]->address_three !=""){?>
+                                      <h4 class="billing-address">Address 3</h4>
+                                       
+                                       
+                                        <p><?php echo $result[0]->address_three ;?> <br/></p>
+                                         <?php }?>
 
+                                         <?php if($result[0]->zip !=""){?>
+                                        <p> <span>Zip Code  - <?php echo $result[0]->zip ;?></span></p> 
+                                        <?php }else{?>
+                                         <p> <span>Zip Code  - Not Found !</span></p> 
+                                        <?php }?>
 
 
                                 </div>

@@ -11,5 +11,9 @@ class User_model extends CI_Model
       $data = $this->db->get('users');
       return $data->result();
   }
+  function add_details($data_array){
+     $this->db->insert('contacts',$data_array);
+        
+   }
 
 }

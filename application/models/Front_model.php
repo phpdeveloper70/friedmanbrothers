@@ -73,5 +73,60 @@ class Front_model extends CI_Model
       $data = $this->db->get('departments');
       return $data->result();
   }
+  /*----change on 22 nov by priyanka ====*/
+   function fetch_country()
+ {
+  $this->db->order_by("name", "ASC");
+  $query = $this->db->get("countries");
+  return $query->result();
+ }
+
+    function fetch_country_name($id)
+ {
+  $this->db->where('id', $id);
+  $query = $this->db->get("countries");
+  return $query->row()->name;;
+
+ }
+  function fetch_country_code($id)
+ {
+  $this->db->where('id', $id);
+  $query = $this->db->get("countries");
+  return $query->row()->sortname;;
+
+ }
+function fetch_state($id)
+ {
+  $this->db->where('country_id', $id);
+  $this->db->order_by('name', 'ASC');
+  $query = $this->db->get('states');
+  $output = '<option value="">Select State</option>';
+  foreach($query->result() as $row)
+  {
+    //print_r($row);
+   $output .= '<option value="'.$row->name.'">'.$row->name.'</option>';
+  }
+  return $output;
+ }
+
+ public function update_user($id,$data)
+  {
+    $this->db->where('id',$id);
+    return $this->db->update('users',$data);
+  }
+  public function get_user_by_id($id)
+  {
+    $this->db->where('id',$id);
+    $rows = $this->db->get('users')->result();
+     return $rows;
+
+  }
+    public function get_address_by_user($id)
+  {
+    $this->db->where('UserID',$id);
+    $rows = $this->db->get('contacts')->result();
+     return $rows;
+
+  }
 
 }

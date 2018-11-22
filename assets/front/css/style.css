@@ -2040,3 +2040,95 @@ display: block;
 .accordion.indicator-plus-before.round-indicator .card-header.active:before {
     color: #fff;
 }
+
+
+/* My Account */
+
+
+.form-input-edit {
+    width: 100%;
+    margin-bottom: 10px;
+    min-height: 50px;
+    border-radius: 4px;
+    border: 2px solid #dedede;
+	padding-left: 15px;
+    padding-right: 15px;
+}
+
+.password-change {
+    padding-left: 15px;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 15px 0px;
+}
+
+form#account-detail p {
+    margin: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #696767;
+	text-transform: capitalize;
+}
+.tab-content.dashboard-content {
+    border: 1px solid #ebebeb;
+    padding: 30px;
+}
+span.highlight-asterisk {
+    color: red;
+}
+span.hint {
+    font-style: italic;
+}
+
+.dashboard-list li a {
+    color: #171771;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* .dashboard-list {
+    border-right: 4px solid #f3f3f3;
+}
+*/
+.dashboard-content h3 {
+border-bottom: 1px solid #ebebeb;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    text-transform: capitalize;
+}
+
+button.reply-btn {
+    background: #171771;
+    color: #fff;
+    border: 0;
+    min-height: 50px;
+    padding: 0px 30px;
+    border-radius: 4px;
+}
+
+.dashboard-list li a.active {
+    background: #f3f3f3;
+    border-left: 2px solid;
+}
+
+a.view {
+    background: #171771;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 5px 12px;
+    text-transform: capitalize;
+}
+
+h4.billing-address {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin: 0;
+}
+p.biller-name {
+    margin: 0;
+    font-weight: 500;
+}
