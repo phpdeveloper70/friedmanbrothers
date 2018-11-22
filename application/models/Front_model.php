@@ -128,5 +128,13 @@ function fetch_state($id)
      return $rows;
 
   }
+  public function search_products($keyword)
+  {
+
+    $this->db->like('ProdTitle',$keyword);
+    $this->db->or_like('sku',$keyword);
+   return $this->db->get('products')->result();
+
+  }
 
 }
