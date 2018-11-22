@@ -14,7 +14,7 @@ class Welcome extends CI_Controller {
 		if (isset($_POST['submit'])){
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Email', 'valid_email');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		if ($this->form_validation->run() == TRUE) {
 			 $data = array(
             	'email' =>$this->input->post('email'),
