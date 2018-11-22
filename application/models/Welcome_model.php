@@ -32,7 +32,11 @@ class Welcome_model extends CI_Model{
        $this->db->order_by("DisplayOrder","asc");
        return $this->db->get('categories')->result(); 
    }
+<<<<<<< HEAD
    /*===faq list===*/
+=======
+ /*===faq list===*/
+>>>>>>> 01a721832f08aca9fe4e9ac3b3d4a443ecc2dcda
     function get_faq(){
        return $this->db->get('tbl_faq')->result(); 
    }

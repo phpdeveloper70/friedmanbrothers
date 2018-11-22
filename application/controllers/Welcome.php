@@ -21,11 +21,18 @@ class Welcome extends CI_Controller {
             	'created_date' => date('Y-m-d h:i:s')
             );
             $data = $this->Welcome_model->add_newletter($data);
+<<<<<<< HEAD
                $this->session->set_flashdata('msg','<div class="alert alert-success">Newsletter successfully saved.</div>');
             redirect();
         }
     }
   
+=======
+            redirect();
+        }
+    }
+     $this->session->set_flashdata('msg','<div class="alert alert-success">Newsletter successfully saved.</div>');
+>>>>>>> 01a721832f08aca9fe4e9ac3b3d4a443ecc2dcda
      $this->load->view('front/home');
  }
 
