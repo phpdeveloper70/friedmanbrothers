@@ -8,11 +8,13 @@ class Products extends CI_Controller {
 		$this->load->model('Welcome_model');
 	}
 
+		
+
+
 	public function index()
 	{
 			// index function
 	}
-
 	public function listing()
 	{
 		$dept_id = $_GET['deptid'];
@@ -71,5 +73,5 @@ class Products extends CI_Controller {
 			}
 
 	}
-
+	
 }
