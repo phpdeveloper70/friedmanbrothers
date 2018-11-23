@@ -29,7 +29,8 @@
                                     <li><a href="<?php echo base_url('user/edit_details'); ?>" class="nav-link active">Account details</a></li>
 									                  <li><a href="<?php echo base_url('user/change_password'); ?>"  class="nav-link">Change Password</a></li>
 									                  <li><a href="<?php echo base_url('user/orders'); ?>" class="nav-link">Orders</a></li>
-                                    <li><a href="<?php echo base_url('user/logout'); ?>" class="nav-link">logout</a></li>
+                                   <li><a href="<?php echo base_url('user/address'); ?>" class="nav-link">Address</a></li>
+					<li><a href="<?php echo base_url('user/logout'); ?>" class="nav-link">logout</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-8">
