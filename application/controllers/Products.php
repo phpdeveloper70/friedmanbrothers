@@ -49,11 +49,7 @@ class Products extends CI_Controller {
 		}
 	}
 
-<<<<<<< HEAD
       public function search(){
-=======
-       public function search(){
->>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 		if(isset($_POST['search']))
 		{
 			 $keyword = $_POST['search_data'];
@@ -62,11 +58,7 @@ class Products extends CI_Controller {
 		}	
 		$data['productdata'] = $this->Front_model->search_products($keyword);
 
-<<<<<<< HEAD
        // echo "<pre>";print_R($data['RESULT']);die;
-=======
-        //echo "<pre>";print_R($data['RESULT']);die;
->>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 		$this->load->view('front/search/listing',$data);
 	}
 
