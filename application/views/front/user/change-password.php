@@ -48,11 +48,7 @@
                                        <h3>Change Password </h3>
                                         <form id="account-detail" class="form-signin" action="" method="post">
                                           <input type="hidden" value="<?php echo $RESULT[0]->password; ?>" name="form_key">
-<<<<<<< HEAD
                                           <?php echo $this->session->flashdata('msge'); ?>
-=======
-                                          <?php echo $this->session->flashdata('msg'); ?>
->>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
                                 <div class="row">
 
 								     <div class="col-md-12">
@@ -95,8 +91,4 @@
 $(document).ready(function(){
   $('.form-signin').parsley();
 });
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
