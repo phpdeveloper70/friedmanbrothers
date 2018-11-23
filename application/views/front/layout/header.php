@@ -8,7 +8,7 @@
       <div class="top-link">
          <div class="quick-links">
             <ul class="list-inline">
-               <li class="list-inline-item"><a href="<?php echo base_url('user/myaccount'); ?>">My Account </a></li>
+               <li class="list-inline-item"><a href="<?php echo base_url('user/dashboard'); ?>">My Account </a></li>
                <li class="list-inline-item"><a href="#">Architects & Designers  </a></li>
                <li class="list-inline-item"><a href="<?php echo base_url('support'); ?>">Support  </a></li>
                <?php $user_id = $this->session->userdata('USER_ID'); ?>
