@@ -60,29 +60,32 @@ class Category extends CI_Controller
 	public function edit()
 	{
 		$args = func_get_args();
-		//$data['cat'] = $this->category_model->get_all_category();
 		$data['result'] = $this->Category_model->get_category_by_id($args[0]);
 		$this->form_validation->set_rules('CatTitle', 'Category', 'trim|required');
 		if(isset($_POST['submit']))
 		{
 			if ($this->form_validation->run() == TRUE)
 			{
-				$DeptID  	= $_POST['DeptID'];
+				$DeptID         = $_POST['DeptID'];
 				$CatTitle   	= $_POST['CatTitle'];
-				$url_slug 		= $_POST['url_slug'];
 				$CatShortDesc	= $_POST['CatShortDesc'];
 				$CatDescription = $_POST['CatDescription'];
-				$root_display 		= $_POST['root_display'];
-				$status 		= $_POST['status'];
+				$HowToOrder     = $_POST['HowToOrder'];
+				$published_state= $_POST['published_state'];
+				$crm_royalties  = $_POST['crm_royalties'];
+				$DisplayOrder  = $_POST['DisplayOrder'];
+				
+				
                  $postdata = array (
-                     	'DeptID'            => $DeptID,
+                     	'DeptID'               => $DeptID,
 		                'CatTitle'             => $CatTitle,
-		                'url_slug'             => $url_slug,
+		                'HowToOrder'           => $HowToOrder,
+		                'published_state'      => $published_state,
+		                'crm_royalties'        => $crm_royalties,
 		                'CatShortDesc'         => $CatShortDesc,
 		                'CatDescription'       => $CatDescription,
-		                 'root_display'         => $root_display,
-		                'status'               => $status,
-		                'created_date'         => date('Y-m-d h:i:s')
+		                'DisplayOrder'         => $DisplayOrder
+		                
 		          );
 
                 // ECHO "<PRE>";PRINT_r($postdata);DIE;
@@ -93,6 +96,7 @@ class Category extends CI_Controller
 		
 		}
 	$data['category'] = $this->Category_model->get_all_category(); 
+	$data['department'] = $this->Category_model->get_all_dept();
 	$this->load->view('admin/category/edit',$data);
 	}
 
