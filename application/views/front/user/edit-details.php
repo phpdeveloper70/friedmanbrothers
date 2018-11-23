@@ -47,12 +47,20 @@
                               <div class="row">
                                   <div class="col-md-6">
                                       <p>First name <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
                                       <input type="text" name="firstname" id="firstname" required class="form-input-edit">
+=======
+                                      <input type="text" name="firstname" id="firstname" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
                                       <?php echo form_error('firstname'); ?>
                                   </div>
                                   <div class="col-md-6">
                                       <p>Last Name <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
                                       <input type="text" name="lastname" id="lastname" required class="form-input-edit">
+=======
+                                      <input type="text" name="lastname" id="lastname" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
                                        <?php echo form_error('lastname'); ?>
                                   </div>
                  <div class="col-md-12">
@@ -64,18 +72,30 @@
 
                  <div class="col-md-6">
                                       <p>Address <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
                                       <input type="text" name="address_one" required id="address_one" class="form-input-edit">
+=======
+                                      <input type="text" name="address_one" id="address_one" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
                                       <?php echo form_error('address_one'); ?>
                                   </div>
           <div class="col-sm-6 mb-view-15">
           <p>Address1 <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
           <input type="text" name="address_two" required id="address_two" class="form-input-edit">
+=======
+          <input type="text" name="address_two" id="address_two" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
           <?php echo form_error('address_two'); ?>
           </div>
                 <div class="col-sm-6 mb-view-15">
                 <p>Country <span class="highlight-asterisk">*</span></p>
 
+<<<<<<< HEAD
           <select name="country" id="country" required class="form-input-edit">
+=======
+          <select name="country" id="country" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
             <option>Select Country</option>
               <?php
     foreach($country as $row)
@@ -88,7 +108,11 @@
         </div>
         <div class="col-sm-6 mb-view-15">
         <p>State <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
         <select name="state" id="state" required class="form-input-edit">
+=======
+        <select name="state" id="state" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
             <option value="">Select State</option>
           </select>
           <?php echo form_error('state'); ?>
@@ -96,7 +120,11 @@
 
           <div class="col-sm-6 mb-view-15">
           <p>City <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
           <input type="text" name="city" required class="form-input-edit">
+=======
+          <input type="text" name="city" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
           <?php echo form_error('city'); ?>
         </div>
           <div class="col-sm-6 mb-view-15">
@@ -105,13 +133,21 @@
         </div>
         <div class="col-sm-6 mb-view-15">
         <p>Company  <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
           <input type="text" name="company" required class="form-input-edit">
+=======
+          <input type="text" name="company" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
           <?php //echo form_error('company'); ?>
         </div>
 
           <div class="col-sm-6 mb-view-15">
           <p>Tax Id <span class="highlight-asterisk">*</span></p>
+<<<<<<< HEAD
           <input type="text" name="taxid" required class="form-input-edit">
+=======
+          <input type="text" name="taxid" class="form-input-edit">
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
             <?php echo form_error('taxid'); ?>
         </div>
 
@@ -119,7 +155,11 @@
 
           <div class="col-sm-12">Which of the following best describes the activities of your company?<span class="highlight-asterisk">*</span></div>
           <div class="col-sm-6 list-activities">
+<<<<<<< HEAD
         <label> <input type="checkbox"  name ="business_type[]"  value="interior"> <span class="style-bg"> Interior Design </span> </label> <br>
+=======
+        <label> <input type="checkbox"  name ="business_type[]" value="interior"> <span class="style-bg"> Interior Design </span> </label> <br>
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
         <label> <input type="checkbox" name ="business_type[]" value="antique"> <span class="style-bg"> Antique Dealer  </span> </label><br>
         <label> <input type="checkbox" name ="business_type[]" value="furniture"> <span class="style-bg"> Furniture Store</span> </label><br>
         <label><input type="checkbox" name ="business_type[]" value="contractor"> <span class="style-bg"> Contractor-Builder	  </span> </label><br>
@@ -191,4 +231,8 @@ $(document).ready(function(){
  }
  });
 });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8

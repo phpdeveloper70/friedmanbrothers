@@ -7,7 +7,11 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+<<<<<<< HEAD
 	    $this->load->model('Front_model');
+=======
+	        $this->load->model('Front_model');
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 	}
 
 	public function login()
@@ -208,7 +212,11 @@ class User extends CI_Controller {
 			$post_data = $this->input->post();
 			if(empty($post_data['oldpassword']) || empty($post_data['newpassword']) || empty($post_data['confirmpassword']))
 			{
+<<<<<<< HEAD
 				$this->session->set_flashdata('msge','<div class="alert alert-danger">Please fill all field</div>');
+=======
+				$this->session->set_flashdata('msg','<div class="alert alert-danger">Please fill all field</div>');
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 				redirect('user/change_password');
 			}
 			else
@@ -229,18 +237,30 @@ class User extends CI_Controller {
 						unset($post_data['changepass']);
 						unset($post_data['newpassword']);						
 						$this->Front_model->update_user($user_id,$post_data);
+<<<<<<< HEAD
 						$this->session->set_flashdata('msge','<div class="alert alert-success">Your password has been changed successfully</div>');
+=======
+						$this->session->set_flashdata('msg','<div class="alert alert-success">Your password has been changed successfully</div>');
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 						redirect('user/change_password');
 		            }
 		             else
 					{
+<<<<<<< HEAD
 						$this->session->set_flashdata('msge','<div class="alert alert-danger">New password and Confirm password not matched.</div>');
+=======
+						$this->session->set_flashdata('msg','<div class="alert alert-danger">New password and Confirm password not matched.</div>');
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 						redirect('user/change_password');
 					}
 					}
 				else
 				{
+<<<<<<< HEAD
 					$this->session->set_flashdata('msge','<div class="alert alert-danger">Old password not matched.</div>');
+=======
+					$this->session->set_flashdata('msg','<div class="alert alert-danger">Old password not matched.</div>');
+>>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
 					redirect('user/change_password');
 				}
 					}			
