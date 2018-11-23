@@ -11,9 +11,36 @@ class User_model extends CI_Model
       $data = $this->db->get('users');
       return $data->result();
   }
-  function add_details($data_array){
-     $this->db->insert('contacts',$data_array);
-        
-   }
+
+  function get_user_by_id($id)
+  {
+      $this->db->where('id',$id);
+      $data = $this->db->get('users');
+      return $data->result();
+  }
+
+  function insert_user($user_data)
+  {
+      $this->db->insert('users',$user_data);
+      $uid = $this->db->insert_id();
+
+      //name,row_type,user_joined
+      //$this->insert_user_info($user_info);
+      return $uid;
+  }
+
+  function insert_user_info($user_info_data)
+  {
+      $this->db->insert('user_info',$user_info_data);
+      $uid = $this->db->insert_id();
+      return $uid;
+  }
+
+  function insert_user_contact($user_contacts_data)
+  {
+      $this->db->insert('contacts',$user_contacts_data);
+      $uid = $this->db->insert_id();
+      return $uid;
+  }
 
 }

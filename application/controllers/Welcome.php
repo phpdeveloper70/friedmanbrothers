@@ -14,18 +14,17 @@ class Welcome extends CI_Controller {
 		if (isset($_POST['submit'])){
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 		if ($this->form_validation->run() == TRUE) {
 			 $data = array(
             	'email' =>$this->input->post('email'),
             	'created_date' => date('Y-m-d h:i:s')
             );
             $data = $this->Welcome_model->add_newletter($data);
-               $this->session->set_flashdata('msg','<div class="alert alert-success">Newsletter successfully saved.</div>');
             redirect();
         }
     }
-  
+     $this->session->set_flashdata('msg','<div class="alert alert-success">Newsletter successfully saved.</div>');
      $this->load->view('front/home');
  }
 
@@ -124,6 +123,12 @@ class Welcome extends CI_Controller {
    public function catalogs()
 	{
 		$this->load->view('front/catalogs');
+	}
+
+	public function get_state()
+	{
+			$c_id = $_POST['cid'];
+			echo $this->front_model->fetch_state($c_id);
 	}
 
 }

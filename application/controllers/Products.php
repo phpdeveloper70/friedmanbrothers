@@ -6,7 +6,6 @@ class Products extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Welcome_model');
-	    $this->load->model('Front_model');
 	}
 
 		
@@ -16,21 +15,6 @@ class Products extends CI_Controller {
 	{
 			// index function
 	}
-	public function search(){
-		if(isset($_POST['search']))
-		{
-			 $keyword = $_POST['search_data'];
-		}else{
-			$keyword ='';
-		}	
-		$data['productdata'] = $this->Front_model->search_products($keyword);
-
-        //echo "<pre>";print_R($data['RESULT']);die;
-		$this->load->view('front/search/listing',$data);
-	}
-
-		
-	
 	public function listing()
 	{
 		$dept_id = $_GET['deptid'];
