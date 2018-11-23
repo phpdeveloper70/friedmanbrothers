@@ -409,4 +409,8 @@ $(document).ready(function(){
 });
 </script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 63be450d676308a350e85eedc931d78ab147ec8c
