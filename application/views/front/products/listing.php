@@ -23,9 +23,9 @@
                <div class="col-lg-3 col-md-4">
                   <div class="search-section">
                      <h3 class="title-left">Search by Style</h3>
-                     <form class="search-box mb-2" method="post">
-                        <input class="form-control" type="search" aria-label="Search">
-                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                     <form class="search-box mb-2" method="post"  action="<?php echo base_url('Products/search');?>">
+                        <input class="form-control" type="search"  name="search_data" aria-label="Search">
+                        <button class="btn" name="search" type="submit"><i class="fa fa-search"></i></button>
                      </form>
                   </div>
                   <!-- Shop By Categories --->

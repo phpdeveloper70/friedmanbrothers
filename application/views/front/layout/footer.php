@@ -9,8 +9,8 @@
                      <ul>
                         <li><a href="<?php echo base_url(); ?>">Home</a></li>
                         <li><a href="<?php echo base_url('about-us'); ?>">About Us</a></li>
-                        <li><a href="<?php echo base_url('user/login'); ?>">Login</a></li>
-                        <li><a href="<?php echo base_url('user/register'); ?>">Register</a></li>
+                        <li><a href="<?php echo base_url('user/dashboard'); ?>">Login</a></li>
+                        <li><a href="<?php echo base_url('user/dashboard'); ?>">Register</a></li>
                         <li><a href="<?php echo base_url('support'); ?>">Support</a></li>
                         <li><a href="<?php echo base_url('contact-us'); ?>">Contact Us</a></li>
                      </ul>
@@ -63,7 +63,7 @@
                           <?php endif; ?>
                            <label>Join to Receive Updates on Promotions</label>
                            <input type="text" name="email" placeholder="Enter Your Email Address" />
-                           <input type="submit" name="submit" value="Signup For Newsletter" />
+                           <input type="submit" name="submit"  value="Signup For Newsletter" />
                         </div>
                      </form>
                   </div>

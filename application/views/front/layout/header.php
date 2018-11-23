@@ -40,9 +40,9 @@
                </li>
              <?php } ?>
             </ul>
-            <form class="search-box">
-               <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-               <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+            <form class="search-box" method="post" action="<?php echo base_url('Products/search');?>">
+               <input class="form-control" type="search" name="search_data" placeholder="Search" aria-label="Search">
+               <button class="btn" name="search" type="submit"><i class="fa fa-search"></i></button>
             </form>
             <ul class="list-inline navbar-right right-item desktop">
                <li class="list-inline-item"><a href="#"><i class="fa fa-heart"></i></a></li>
