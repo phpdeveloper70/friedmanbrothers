@@ -10,7 +10,7 @@
       	<div class="container">
       		<h4>FAQ's</h4>
       	  <ol class="breadcrumb">
-      		<li class="breadcrumb-item"><a href="<?php echo base_url()?>">Home123456</a></li>
+      		<li class="breadcrumb-item"><a href="<?php echo base_url()?>">Home</a></li>
       		<li class="breadcrumb-item active" aria-current="page">FAQ's</li>
       	  </ol>
       	</div>
