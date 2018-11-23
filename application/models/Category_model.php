@@ -1,7 +1,7 @@
 <?php 
 class Category_model extends CI_Model
 {	
-	protected $table = 'tbl_categories';
+	protected $table = 'categories';
 	public function get_all_category()
 	{
 	 return $this->db->get($this->table)->result();
@@ -26,7 +26,13 @@ class Category_model extends CI_Model
 		$this->db->where('id',$id);
 		$this->db->delete($this->table);
 	}
-	public function check_child_category($id)
+    public function get_all_dept()
+	{
+		$this->db->order_by("id");
+	 return $this->db->get('departments')->result();
+	}
+
+    public function check_child_category($id)
 	{
 		$this->db->where('DeptID',$id);
 		return $this->db->get($this->table)->result();
@@ -36,7 +42,7 @@ class Category_model extends CI_Model
 		$this->db->where('DeptID',$DeptID);
 
 		$query_data = $this->db->get($this->table)->result();
-		//echo $this->db->last_query();
+		
 		
 		if(count($query_data)>0)
 		{		

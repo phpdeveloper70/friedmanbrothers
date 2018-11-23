@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Category extends CI_Controller 
+class Product extends CI_Controller 
 {
 	
 	function __construct()
 	{
 		parent::__construct();
 		$admin_id = $this->session->userdata('ADMIN_ID');
+		$this->load->model('Product_model');
 		$this->load->model('Category_model');
 		if(empty($admin_id))
 		{
@@ -17,8 +18,8 @@ class Category extends CI_Controller
 	
 	public function listing()
 	{
-		$data['result'] = $this->Category_model->get_all_category(); 
-		$this->load->view('admin/category/listing',$data);
+		$data['result'] = $this->Product_model->get_all_product(); 
+		$this->load->view('admin/product/listing',$data);
 	}
 
 	public function add()
@@ -29,6 +30,7 @@ class Category extends CI_Controller
 		$this->form_validation->set_rules('CatTitle', 'Category', 'trim|required');
 		if ($this->form_validation->run() == TRUE)
 		{
+
 			$DeptID  	= $_POST['DeptID'];
 			$CatTitle   	= $_POST['CatTitle'];
 			$url_slug 		= $_POST['url_slug'];
@@ -47,66 +49,67 @@ class Category extends CI_Controller
 		                'root_display'         => $root_display,
 		                'created_date'         => date('Y-m-d h:i:s')
 		          );
-                 $this->Category_model->save_category($postdata);
+                 $this->Product_model->save_product($postdata);
 
 
 		$this->session->set_flashdata('msg', '<div class="alert alert-success">Record has been successfully saved.</div>');
-		redirect('admin/category/listing');
+		redirect('admin/product/listing');
 		}
 			
 	}
-		$this->load->view('admin/category/add');
+		$this->load->view('admin/product/add');
 	}
 	public function edit()
 	{
 		$args = func_get_args();
-		$data['result'] = $this->Category_model->get_category_by_id($args[0]);
-		$this->form_validation->set_rules('CatTitle', 'Category', 'trim|required');
+		$data['result'] = $this->Product_model->get_product_by_id($args[0]);
+		$this->form_validation->set_rules('ProdTitle', 'Product Title', 'trim|required');
 		if(isset($_POST['submit']))
 		{
 			if ($this->form_validation->run() == TRUE)
 			{
-				$DeptID         = $_POST['DeptID'];
-				$CatTitle   	= $_POST['CatTitle'];
-				$CatShortDesc	= $_POST['CatShortDesc'];
-				$CatDescription = $_POST['CatDescription'];
-				$HowToOrder     = $_POST['HowToOrder'];
+				
+				$ProdTitle         = $_POST['ProdTitle'];
+				$Sku   	= $_POST['Sku'];
+				$DeptID	= $_POST['DeptID'];
+				$CatID = $_POST['CatID'];
+				$ProdDescription     = $_POST['ProdDescription'];
 				$published_state= $_POST['published_state'];
-				$crm_royalties  = $_POST['crm_royalties'];
+				$ProdShortDesc  = $_POST['ProdShortDesc'];
 				$DisplayOrder  = $_POST['DisplayOrder'];
 				
 				
                  $postdata = array (
-                     	'DeptID'               => $DeptID,
-		                'CatTitle'             => $CatTitle,
-		                'HowToOrder'           => $HowToOrder,
+                     	'ProdTitle'               => $ProdTitle,
+		                'Sku'             => $Sku,
+		                'DeptID'           => $DeptID,
 		                'published_state'      => $published_state,
-		                'crm_royalties'        => $crm_royalties,
-		                'CatShortDesc'         => $CatShortDesc,
-		                'CatDescription'       => $CatDescription,
+		                'ProdDescription'        => $ProdDescription,
+		                'ProdShortDesc'         => $ProdShortDesc,
+		                'CatID'       => $CatID,
 		                'DisplayOrder'         => $DisplayOrder
 		                
 		          );
 
                 // ECHO "<PRE>";PRINT_r($postdata);DIE;
-				$this->Category_model->update_category_by_id($args[0],$postdata);
+				$this->Product_model->update_product_by_id($args[0],$postdata);
 				$this->session->set_flashdata('msg','<div class="alert alert-success">Record has been successfully updated.</div>');
-				redirect('admin/category/listing');
+				redirect('admin/product/listing');
 			}
 		
 		}
 	$data['category'] = $this->Category_model->get_all_category(); 
-	$data['department'] = $this->Category_model->get_all_dept();
-	$this->load->view('admin/category/edit',$data);
+	$data['department'] = $this->Product_model->get_all_dept();
+	$this->load->view('admin/product/edit',$data);
 	}
 
 	public function delete()
 	{
 		$args = func_get_args();
-		$team_data =  $this->Category_model->get_category_by_id($args[0]);
-		$this->Category_model->delete_category_by_id($args[0]);
+		$team_data =  $this->Product_model->get_product_by_id($args[0]);
+		$this->Product_model->delete_product_by_id($args[0]);
 	    $this->session->set_flashdata('msg','<div class="alert alert-success">record has been successfully deleted.</div>');
-		redirect('admin/category/listing');
+		redirect('admin/product/listing');
 	}
 	
 	

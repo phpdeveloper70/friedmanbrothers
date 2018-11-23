@@ -126,4 +126,12 @@ function fetch_state($id)
     $rows = $this->db->get('contacts')->result();
      return $rows;
   }
+   public function search_products($keyword)
+  {
+
+    $this->db->like('ProdTitle',$keyword);
+    $this->db->or_like('Sku',$keyword);
+   return $this->db->get('products')->result();
+
+  }
 }

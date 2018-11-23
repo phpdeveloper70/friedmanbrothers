@@ -2,13 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin_model extends CI_Model
 {
-  	public function admin_login($email,$password)
-	{
-		$this->db->where('email',$email);
-		$this->db->where('password',md5($password));
-		$rows = $this->db->get('users')->result();
-        return $rows;
-	}
+ 
+
+		function admin_login($username,$password)
+		  {
+		      $this->db->where('name',$username);
+		      //$this->db->or_where('mail_user',$username);
+		      $this->db->where('password',md5($password));
+		      $data = $this->db->get('users');
+		      return $data->result();
+		  }
+
+
+
+
     public function count_all_users()
 	{
 	 	 $this->db->from('users');
@@ -25,7 +32,7 @@ class Admin_model extends CI_Model
 	}
     public function count_all_categories()
 	 	{
-	 	 $this->db->from('tbl_categories');
+	 	 $this->db->from('categories');
          return $cat_rows = $this->db->count_all_results();
     	 }
     public function get_all_user_type()
