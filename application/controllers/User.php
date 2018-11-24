@@ -131,6 +131,7 @@ class User extends CI_Controller {
 							$business_types = implode(";",$_POST["business_types"]);
 							if($business_types == null) {		$business_types = "";   }
 							$company_data['row_type'] = 'department';
+							$company_data['UserID'] = $user_id;
 							$company_data['name'] = $_POST['company'];
 							$company_data['business_type'] = $business_types;
 							$company_data['crm_dept'] = 'Customer (Trade) 40%';
@@ -138,6 +139,7 @@ class User extends CI_Controller {
 							$dept_id = $this->user_model->insert_user_contact($company_data); // insert company
 
 							$location_data['row_type'] = 'category';
+							$location_data['UserID'] = $user_id;
 							$location_data['DeptID'] = $dept_id;
 							$location_data['name'] = $user_data_two['city'];
 							$location_data['address_one'] = $user_data_two['address1'];
@@ -255,7 +257,7 @@ class User extends CI_Controller {
 		  $user_id = $this->session->userdata('USER_ID');
 			if(empty($user_id)){ redirect('user/register'); }
 			if (isset($_POST['submit'])){
-
+                
 				$this->load->helper(array('form', 'url'));
 				$this->load->library('session'); 
 				$this->load->library('form_validation');
@@ -308,18 +310,24 @@ class User extends CI_Controller {
 		            	'notes' =>$this->input->post('taxid'),
 		            	'business_type' => $business,
 		            	'job_description' => $job,
-		            	'crm_dept' => $company
+		            	'name' => $company
 		            	
 		            	
 		             );
                     
-		            $this->user_model->add_details($data_array); 
+		            $this->Front_model->update_details($data_array,$user_id); 
 		          
 		            $this->session->set_flashdata('message','Account Details Added Successfully!');
 		            redirect('user/edit_details');	
 		        } 
 		    }
+		      $data['user_data'] = $this ->Front_model->fetch_user_account_data($user_id);
+		    //  $business_type = $data['user_data'][0]->business_type;
+		      // $data['checkbox_array'] = explode(",",$business_type);
+		       //print_R($checkbox_array);
+		   // echo "<pre>";print_r($data['user_data'] );
               $data['country'] = $this ->Front_model->fetch_country();
+
 		      $this->load->view('front/user/edit-details',$data);
 	}
 	
