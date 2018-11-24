@@ -22,6 +22,7 @@ class Admin extends CI_Controller
 		
 			if(isset($_POST['login-btn']))
 			{
+			
 					$this->form_validation->set_rules('email', 'Email Address', 'trim|required');
 					$this->form_validation->set_rules('password', 'Password', 'trim|required');
 					$this->form_validation->set_error_delimiters('<div class="has-error"><i class="fa fa-warning"></i>&nbsp', '</div>');
@@ -32,11 +33,12 @@ class Admin extends CI_Controller
 							if(!empty($username) || !empty($password))
 							{
 											$user_data = $this->Admin_model->admin_login($username,$password);
-											//print_r($user_data); die;
+											 
 											if(count($user_data)>0)
 											{
-													$user_login_data = array('USER_ID'=>$user_data[0]->id,'USER_NAME'=>$user_data[0]->name,'USER_TYPE'=>$user_data[0]->usertype);
-				  								$this->session->set_userdata($user_login_data);
+													$user_login_data = array('ADMIN_ID'=>$user_data[0]->id,'USER_NAME'=>$user_data[0]->name,'USER_TYPE'=>$user_data[0]->usertype);
+				  								
+												 $this->session->set_userdata($user_login_data);
 													redirect('admin/dashboard');
 											}else
 											{
