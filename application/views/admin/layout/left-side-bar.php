@@ -45,6 +45,13 @@
            
          </ul>
       </li>
+	      <li class="submenu">
+         <a href="#"><i class="icon-question-sign"></i> <span>Manage Faq</span></a>
+         <ul>
+            <li><a href="<?php echo base_url('admin/faq/listing'); ?>">Manage Faq</a></li>
+            <li><a href="<?php echo base_url('admin/faq/add'); ?>">Add New</a></li>
+         </ul>
+      </li>
 	   <!--
       <li class="submenu">
          <a href="#"><i class="icon icon-money"></i> <span>Manage Height</span></a>
@@ -53,13 +60,7 @@
             <li><a href="<?php echo base_url('admin/height/add'); ?>">Add New</a></li>
          </ul>
       </li>
-      <li class="submenu">
-         <a href="#"><i class="icon-question-sign"></i> <span>Manage Faq</span></a>
-         <ul>
-            <li><a href="<?php echo base_url('admin/faq/listing'); ?>">Manage Faq</a></li>
-            <li><a href="<?php echo base_url('admin/faq/add'); ?>">Add New</a></li>
-         </ul>
-      </li>
+   
       <li class="submenu">
          <a href="#"><i class="icon icon-money"></i> <span>Manage Plans</span></a>
          <ul>
