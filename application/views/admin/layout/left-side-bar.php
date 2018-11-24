@@ -52,6 +52,13 @@
             <li><a href="<?php echo base_url('admin/faq/add'); ?>">Add New</a></li>
          </ul>
       </li>
+	       <li class="submenu">
+         <a href="#"><i class="icon icon-money"></i> <span>Manage Contact Details</span></a>
+         <ul>
+            <li><a href="<?php echo base_url('admin/contact/listing'); ?>">Contact List</a></li>
+           
+         </ul>
+      </li>
 	   <!--
       <li class="submenu">
          <a href="#"><i class="icon icon-money"></i> <span>Manage Height</span></a>
