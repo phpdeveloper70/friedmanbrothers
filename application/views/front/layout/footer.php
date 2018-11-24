@@ -62,11 +62,9 @@
                               <p><center><?php echo $this->session->flashdata('msg'); ?></center></p>
                           <?php endif; ?>
                            <label>Join to Receive Updates on Promotions</label>
-<<<<<<< HEAD
+
                            <input type="text" name="email" required  placeholder="Enter Your Email Address" />
-=======
-                           <input type="text" name="email" placeholder="Enter Your Email Address" />
->>>>>>> 7d546049417e40258e16a6cf259912edcbdb0fc8
+
                            <input type="submit" name="submit"  value="Signup For Newsletter" />
                         </div>
                      </form>
