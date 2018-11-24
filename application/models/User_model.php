@@ -42,6 +42,12 @@ class User_model extends CI_Model
       $uid = $this->db->insert_id();
       return $uid;
   }
+
+   function update_user_contact($user_contacts_data,$user_id)
+  {
+      $this->db->where('id',$user_id);
+      return $this->db->update('contacts',$user_contacts_data);
+  }
    function add_details($data_array){
      $this->db->insert('contacts',$data_array);
         
