@@ -112,6 +112,11 @@ function fetch_state($id)
     $this->db->where('id',$id);
     return $this->db->update('users',$data);
   }
+   public function update_details($data_array,$user_id)
+  {
+    $this->db->where('U',$user_id);
+    return $this->db->update('contacts',$data_array);
+  }
 
   public function get_user_by_id($id)
   {
@@ -133,5 +138,11 @@ function fetch_state($id)
     $this->db->or_like('Sku',$keyword);
    return $this->db->get('products')->result();
 
+  }
+    public function fetch_user_account_data($user_id)
+  {
+    $this->db->where('UserID',$user_id);
+    $rows = $this->db->get('contacts')->result();
+     return $rows;
   }
 }
