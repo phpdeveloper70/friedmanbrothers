@@ -4,6 +4,18 @@ class Category_model extends CI_Model
 	protected $table = 'categories';
 	public function get_all_category()
 	{
+		{ 
+		$this->db->select('categories.*,departments.DeptTitle'); 
+		$this->db->from("categories");
+		$this->db->join('departments', 'departments.id = categories.DeptID', 'left');
+		$query=$this->db->get();
+		    if($query->num_rows() > 0)
+		    {
+		        return $query->result();
+		    }
+		     return false;
+		}
+
 	 return $this->db->get($this->table)->result();
 	}
 	public function save_category($data)
