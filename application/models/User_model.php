@@ -53,4 +53,30 @@ class User_model extends CI_Model
         
    }
 
+
+  function user_log($firstname,$lastname ,$email)
+  {
+      $this->db->where('firstname',$firstname);
+      $this->db->where('lastname',$lastname);
+      $this->db->where('email',$email);
+      //$this->db->where('email2',$email);
+      $this->db->order_by("id", "asc");
+      $data = $this->db->get('contacts');
+      return $data->result();
+  }
+
+   public function update_user($user_id,$data)
+  {
+    $this->db->where('id',$user_id);
+    return $this->db->update('users',$data);
+  }
+   public function db_update($id)
+  {
+
+     $this->db->where('id',$id);
+     $this->db->set('user_status',"");
+     return $this->db->update('users');
+   
+  }
+
 }
