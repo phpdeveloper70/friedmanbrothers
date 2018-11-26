@@ -23,9 +23,10 @@
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Category Name</th>
+																	<th>Category Name</th>
+																	<th>Department</th>
                    <th>Category Short Desc</th>
-                  <th>Category Desc</th>
+            
                   <th>Published State</th>
                   <th>Action</th>
                 </tr>
@@ -37,8 +38,8 @@
                 <tr class="gradeX">
                   <td><?php echo ++$sno?></td>
                   <td><?php echo $row->CatTitle?></td>
+                    <td><?php echo $row->DeptTitle?></td>
                   <td><?php echo $row->CatShortDesc?></td>
-                  <td><?php echo $row->CatDescription?></td>
                   <td><?php echo $row->published_state?></td>
                   <td width="15%">
                     <a href="<?php echo base_url('admin/category/edit/'.$row->id); ?>" class="btn  btn-success btn-xs"><i class="fa fa-fw fa-edit"></i>Edit</a>
