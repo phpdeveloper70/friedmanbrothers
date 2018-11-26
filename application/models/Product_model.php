@@ -4,7 +4,16 @@ class Product_model extends CI_Model
 	protected $table = 'products';
 	public function get_all_product()
 	{
-	 return $this->db->get($this->table)->result();
+	 $this->db->select('products.*,categories.CatTitle,departments.DeptTitle');
+		     $this->db->from("products");
+		     $this->db->join('categories', 'products.CatID = categories.id', 'left');
+		     $this->db->join('departments', 'products.DeptID = departments.id', 'left');
+		     $query=$this->db->get();
+		          if($query->num_rows() > 0)
+		          {
+		          return $query->result();
+		          }
+		     return false;
 	}
 	public function save_product($data)
 	{
