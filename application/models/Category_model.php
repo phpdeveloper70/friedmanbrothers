@@ -15,7 +15,6 @@ class Category_model extends CI_Model
 		    }
 		     return false;
 		}
-
 	 return $this->db->get($this->table)->result();
 	}
 	public function save_category($data)
