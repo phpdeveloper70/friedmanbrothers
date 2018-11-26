@@ -25,8 +25,9 @@
                   <th>S.No</th>
                   <th>Sku</th>
                    <th>Product Title</th>
-                  <th>Product Desc</th>
-                  <th>Published State</th>
+																	  <th>Department</th>
+                  <th>Category</th>
+                 <th>Published State</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -38,7 +39,8 @@
                   <td><?php echo ++$sno?></td>
                   <td><?php echo $row->Sku?></td>
                   <td><?php echo $row->ProdTitle?></td>
-                  <td><?php echo $row->ProdDescription?></td>
+                    <td><?php echo $row->DeptTitle?></td>
+                  <td><?php echo $row->CatTitle?></td>
                   <td><?php echo $row->published_state?></td>
                   <td width="15%">
                     <a href="<?php echo base_url('admin/product/edit/'.$row->id); ?>" class="btn  btn-success btn-xs"><i class="fa fa-fw fa-edit"></i>Edit</a>
