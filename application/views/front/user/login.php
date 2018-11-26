@@ -16,6 +16,7 @@
                <div class="box-wrap-login">
                   <h6 class="box-title">Login Here</h6>
                   <?php echo $this->session->flashdata('message'); ?>
+                  <?php echo $this->session->flashdata('msge'); ?>
                   <form method="post" >
                      <div class="form-group">
                         <input type="text" name="email" class="style-input" value="<?php echo set_value('email'); ?>" placeholder="Enter username or email">
@@ -33,8 +34,8 @@
                         <input type="submit" name="login" class="style-input submit-style" value="Login Now">
                      </div>
                      <div class="register-forgot">
-                        <a href="#">Register</a>
-                        <a href="#" class="pull-right">Forgot Your Password</a>
+                        <a href="<?php echo base_url('user/register'); ?>">Register</a>
+                        <a href="<?php echo base_url('user/forgot_password'); ?>" class="pull-right">Forgot Your Password</a>
                      </div>
                      <a href="<?php echo base_url(); ?>" class="backtohome"><i class="fa fa-long-arrow-left"></i> Back to Home Page?</a>
                   </form>
