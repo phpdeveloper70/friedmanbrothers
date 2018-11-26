@@ -2,9 +2,9 @@
 class Product_model extends CI_Model
 {	
 	protected $table = 'products';
-	public function get_all_product()
-	{
-	 $this->db->select('products.*,categories.CatTitle,departments.DeptTitle');
+	 function get_all_product()
+		{
+		     $this->db->select('products.*,categories.CatTitle,departments.DeptTitle');
 		     $this->db->from("products");
 		     $this->db->join('categories', 'products.CatID = categories.id', 'left');
 		     $this->db->join('departments', 'products.DeptID = departments.id', 'left');
@@ -14,7 +14,7 @@ class Product_model extends CI_Model
 		          return $query->result();
 		          }
 		     return false;
-	}
+		}
 	public function save_product($data)
 	{
 		$this->db->insert($this->table,$data);
@@ -40,8 +40,5 @@ class Product_model extends CI_Model
 		$this->db->order_by("id");
 	 return $this->db->get('departments')->result();
 	}
-
-
-	
-	
+ 	
 }
