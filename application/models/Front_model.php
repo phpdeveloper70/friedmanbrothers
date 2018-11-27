@@ -102,7 +102,7 @@ function fetch_state($id)
   foreach($query->result() as $row)
   {
     //print_r($row);
-   $output .= '<option value="'.$row->name.'">'.$row->name.'</option>';
+   $output .= '<option value="'.$row->name.'" >'.$row->name.'</option>';
   }
   return $output;
  }
@@ -114,7 +114,7 @@ function fetch_state($id)
   }
    public function update_details($data_array,$user_id)
   {
-    $this->db->where('U',$user_id);
+    $this->db->where('UserID',$user_id);
     return $this->db->update('contacts',$data_array);
   }
 
