@@ -5,11 +5,16 @@ class User_model extends CI_Model
 
   function user_login($username,$password)
   {
-      $this->db->where('name',$username);
-      //$this->db->or_where('mail_user',$username);
-      $this->db->where('password',md5($password));
-      $data = $this->db->get('users');
-      return $data->result();
+      $this->db->select('users.*,contacts.email'); 
+      $this->db->from("users");
+      $this->db->join('contacts', 'contacts.UserID = users.id', 'left');
+      $this->db->where('users.name',$username);
+      $this->db->or_where('contacts.email',$username);
+      $this->db->where('users.password',md5($password));
+      $this->db->where('users.user_status',"verified");
+      $data = $this->db->get();
+       return $data->result();
+       
   }
 
   function get_user_by_id($id)
@@ -74,9 +79,12 @@ class User_model extends CI_Model
   {
 
      $this->db->where('id',$id);
-     $this->db->set('user_status',"");
+     $this->db->set('user_status',"verified");
      return $this->db->update('users');
    
   }
+
+
+  
 
 }
