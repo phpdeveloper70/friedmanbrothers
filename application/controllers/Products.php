@@ -8,7 +8,7 @@ class Products extends CI_Controller {
 		$this->load->model('Welcome_model');
 	}
 
-		
+
 
 
 	public function index()
@@ -49,6 +49,13 @@ class Products extends CI_Controller {
 	}
 
 
+	function detail()
+	{
+			$pro_id = $_GET['pid'];
+			$data['product'] = $this->front_model->get_product_by_id($pro_id);
+			$this->load->view('front/products/details',$data);
+	}
+
 	function test()
 	{
 			$category_data = $this->front_model->get_department_category(2);
@@ -73,5 +80,5 @@ class Products extends CI_Controller {
 			}
 
 	}
-	
+
 }

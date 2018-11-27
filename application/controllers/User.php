@@ -129,6 +129,7 @@ class User extends CI_Controller {
 							$business_types = implode(";",$_POST["business_types"]);
 							if($business_types == null) {		$business_types = "";   }
 							$company_data['row_type'] = 'department';
+							$company_data['UserID'] = $user_id;
 							$company_data['name'] = $_POST['company'];
 							$company_data['business_type'] = $business_types;
 							$company_data['crm_dept'] = 'Customer (Trade) 40%';
@@ -136,6 +137,7 @@ class User extends CI_Controller {
 							$dept_id = $this->user_model->insert_user_contact($company_data); // insert company
 
 							$location_data['row_type'] = 'category';
+							$location_data['UserID'] = $user_id;
 							$location_data['DeptID'] = $dept_id;
 							$location_data['name'] = $user_data_two['city'];
 							$location_data['address_one'] = $user_data_two['address1'];

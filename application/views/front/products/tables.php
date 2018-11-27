@@ -37,7 +37,7 @@
   					<h3><?php echo $product->ProdTitle; ?> (Style#: <?php echo $product->Sku; ?>)</h3>
   					<strong>Description:</strong>
   					<span> <?php echo $product->ProdDescription; ?></span>
-  					<a href="javascript_void(0)" class="btn know-more bg-white mt-2">More Info <i class="fa fa-caret-right"></i></a>
+  					<a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>" class="btn know-more bg-white mt-2">More Info <i class="fa fa-caret-right"></i></a>
   					<a href="javascript_void(0)" class="btn know-more bg-white mt-2">Request Call Back <i class="fa fa-caret-right"></i></a>
   					</div>
   				</div>
@@ -56,11 +56,8 @@
   					<div class="description-table text-white">
   					<h3><?php echo $product->ProdTitle; ?> (Style#: <?php echo $product->Sku; ?>)</h3>
   					<strong>Description:</strong>
-  					<span>This is a symmetrical table with a cloverleaf shaped top.
-  					It is <br>  shown with inset glass but as with all of our designs many  <br>  custom options are available.</span>
-  					<strong>Standard Sizes:</strong>
-  					<span>S 39"w x 34"h x 35"d</span>
-  					<a href="javascript_void(0)" class="btn know-more bg-white mt-2">More Info <i class="fa fa-caret-right"></i></a>
+  					<span> <?php echo $product->ProdDescription; ?></span>
+  					<a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>" class="btn know-more bg-white mt-2">More Info <i class="fa fa-caret-right"></i></a>
   					<a href="javascript_void(0)" class="btn know-more bg-white mt-2">Request Call Back <i class="fa fa-caret-right"></i></a>
   					</div>
   				</div>

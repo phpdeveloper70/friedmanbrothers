@@ -65,6 +65,7 @@ $route['faq'] = 'welcome/faq';
 $route['about-us'] = 'welcome/about_us';
 $route['support'] = 'welcome/support';
 $route['catalogs'] = 'welcome/catalogs';
+$route['product-detail/(:any)'] = 'products/detail/$1';
 /* front routes */
 
 $route['default_controller'] = 'welcome';

@@ -5,6 +5,11 @@ function create_slug($string)
    return strtolower($slug);
 }
 
+function calc_square_ft($width,$height) {
+	$retval = roundUp(ceil($width) * ceil($height)/144, 2);
+	return $retval;
+}
+
 function get_left_category($category_data, $header_name)
 {
   $array_data = array();
@@ -128,119 +133,55 @@ function home_slider_class($no)
 	//slide_style_center
 }
 
-function inclusions( $values = array() ) {
-	$options = array(
-		'validate' => array(
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/js/validator'
-							),
-						),
-		'datepicker' => array(
-							array(
-								'type' => 'css',
-								'value' => 'assets/datepicker/datetimepicker.min'
-							),
-							array(
-								'type' => 'js',
-								'value' => 'assets/datepicker/moment.min'
-							),
-							array(
-								'type' => 'js',
-								'value' => 'assets/datepicker/datetimepicker.min'
-							)
-						),
-		'chart' => array(
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/chart/charts'
-							),
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/chart/light'
-							),
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/chart/serial'
-							)
-						),
-		'jquery-ui' => array(
-							array(
-								'type' => 'js',
-								'value' => 'assets/js/jquery-ui.min'
-							),
-						),
-		'jquery-browser' => array(
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/js/jquery-browser'
-							)
-						),
-		'fancybox' => array(
-							array(
-								'type' => 'js',
-								'value' => 'assets/fancybox/jquery.fancybox'
-							),
-							array(
-								'type' => 'js',
-								'value' => 'assets/js/jquery-browser'
-							),
-							array(
-								'type' => 'css',
-								'value' => 'assets/fancybox/jquery.fancybox'
-							),
-						),
-		'datatable' => array(
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/datatables/jquery.dataTables.min'
-							),
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/datatables/dataTables.bootstrap.min'
-							),
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/datatables/dataTable.editor.min'
-							),
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/datatables/dataTable.select.min'
-							),
-							array(
-								'type' => 'header_js',
-								'value' => 'assets/datatables/dataTable.button.min'
-							),
-							array(
-								'type' => 'css',
-								'value' => 'assets/datatables/dataTables.bootstrap'
-							),
-						),
-		'chosen' => array(
-							array(
-								'type' => 'css',
-								'value' => 'assets/chosen/chosen'
-							),
-							array(
-								'type' => 'js',
-								'value' => 'assets/chosen/chosen'
-							),
-						),
-	);
 
-	$output['header_js'] = array(
-		'assets/js/jquery-2.2.3.min',
-		'assets/js/slimscroll'
-	);
+function roundUp( $value, $precision=0 ) {
+    if ( $precision == 0 ) {
+        $precisionFactor = 1;
+    } else {
+        $precisionFactor = pow( 10, $precision );
+    }
+    return ceil( $value * $precisionFactor )/$precisionFactor;
+}
 
-	foreach( $values as $value ) {
-		$inputs = $options[$value];
-		foreach( $inputs as $input ) {
-			$output[$input['type']][] = $input['value'];
-		}
+
+function format_fractions($number){
+	$parts = explode(".",$number);
+	if(count($parts) == 1){
+		return $number;
 	}
-
-	return $output;
+	if ($parts[1] == 0) {
+		return $parts[0];
+	}
+	$dec = $parts[1];
+	if($dec == "125" || $dec == "1250"){
+		$frac = "1 8";
+	}elseif($dec == "167" || $dec == "1670"){
+		$frac = "1 6";
+	}elseif($dec == "25" || $dec == "2500"){
+		$frac = "1 4";
+	}elseif($dec == "333" || $dec == "3330"){
+		$frac = "1 3";
+	}elseif($dec == "375" || $dec == "3750"){
+		$frac = "3 8";
+	}elseif($dec == "5" || $dec == "5000"){
+		$frac = "1 2";
+	}elseif($dec == "625" || $dec == "6250"){
+		$frac = "5 8";
+	}elseif($dec == "667" || $dec == "6670"){
+		$frac = "2 3";
+	}elseif($dec == "75" || $dec == "7500"){
+		$frac = "3 4";
+	}elseif($dec == "8335" || $dec == "8335"){
+		$frac = "5 6";
+	}elseif($dec == "875" || $dec == "8750"){
+		$frac = "7 8";
+	}
+	if($frac == ""){
+		return $number;
+	}
+	$fparts = explode(" ",$frac);
+	$frac = "<sup>".$fparts[0]."</sup>&frasl;<sub>".$fparts[1]."</sub>";
+	return $parts[0]." ".$frac;
 }
 
 ?>

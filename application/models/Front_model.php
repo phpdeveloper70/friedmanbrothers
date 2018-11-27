@@ -71,6 +71,39 @@ class Front_model extends CI_Model
       $data = $this->db->get('departments');
       return $data->result();
   }
+
+  function get_product_by_sku($Sku)
+  {
+      $this->db->where('Sku',$Sku);
+      $data = $this->db->get('products');
+      return $data->result();
+  }
+
+  function get_product_by_id($id)
+  {
+      //SELECT * FROM products WHERE id=?
+      $this->db->where('id',$id);
+      $data = $this->db->get('products');
+      return $data->result();
+  }
+
+  function get_related_products($Sku)
+  {
+    //SELECT * FROM related_skus WHERE Sku=?
+    $this->db->where('Sku',$Sku);
+    $data = $this->db->get('related_skus');
+    return $data->result();
+  }
+
+  function get_product_size($pid)
+  {
+    //SELECT * FROM products_data WHERE row_type='size' AND prodid=30293 ORDER BY display_order
+    $this->db->where('prodid',$pid);
+    $this->db->where('row_type','size');
+    $data = $this->db->get('products_data');
+    return $data->result();
+  }
+
   /*----change on 22 nov by priyanka ====*/
 function fetch_country()
  {
@@ -127,3 +160,4 @@ function fetch_state($id)
      return $rows;
   }
 }
+///home/glamourbook/public_html/video/admin/addvideo.php

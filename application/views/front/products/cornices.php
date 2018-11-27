@@ -37,7 +37,9 @@
 					<img src="<?php echo base_url('assets/front/images/style-1.png'); ?>">
 				</div>
 				<div class="style-number">
-					<span class="figure-item"><?php echo $product->ProdTitle; ?> Style# <?php echo $product->Sku; ?></span>
+          <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>">
+					       <span class="figure-item"><?php echo $product->ProdTitle; ?> Style# <?php echo $product->Sku; ?></span>
+          </a>
 					<span class="vertical-line">&nbsp;</span>
 					<a href="javascript_void(0)" class="btn know-more bg-white">More Info<i class="fa fa-caret-right"></i></a>
 				</div>

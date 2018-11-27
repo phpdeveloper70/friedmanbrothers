@@ -79,18 +79,20 @@
                                  <div class="img-wrap">
                                     <img src="<?php echo base_url('assets/front/images/most-3.jpg'); ?>">
                                     <div class="hoverbox">
-                                       <a href="#" class="view-prod">View Product</a>
+                                       <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>" class="view-prod">View Product</a>
                                        <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
                                     </div>
                                  </div>
                                  <div class="description">
+                                   <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>">
                                     <span><?php echo $product->ProdTitle; ?></span>
                                     <small>Style#: <?php echo $product->Sku; ?></small>
+                                  </a>
                                  </div>
                               </div>
                            </div>
                          <?php } }else{ ?>
-                        <div class='data-not-found col-md-6  col-lg-6'>There are no products to list in this category.</div>   
+                        <div class='data-not-found col-md-6  col-lg-6'>There are no products to list in this category.</div>
                          <?php } ?>
                            <!-- Column-1 -->
                         </div>

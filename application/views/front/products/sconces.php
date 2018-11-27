@@ -36,13 +36,15 @@
                                  <div class="img-wrap">
                                     <img src="<?php echo base_url('assets/front/images/most-3.jpg'); ?>">
                                     <div class="hoverbox">
-                                       <a href="#" class="view-prod">View Product</a>
+                                       <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>" class="view-prod">View Product</a>
                                        <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
                                     </div>
                                  </div>
                                  <div class="description">
+                                   <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>">
                                     <span><?php echo $product->ProdTitle; ?></span>
                                     <small>Style#: <?php echo $product->Sku; ?></small>
+                                  </a>
                                  </div>
                               </div>
                            </div>
