@@ -198,23 +198,29 @@ class User extends CI_Controller {
 						$message .= "$use_email<br><br>\n\n";
 						$message .= "Phone: $use_phone<br><br>\n\n";
 						$message .= "Fax: $use_fax<br><br>\n\n";
-						//print_R($message); die;
-						$this->email->message($message);
-			            if($this->email->send()){
-						$this->session->set_flashdata('msg', '<div class="alert alert-success">Email sent successfully.</div>');
-					   }else{
-					    $this->session->set_flashdata("email_sent","Error in sending Email.");
-					  }
+						//print_R($message); 
+						//$this->email->message($message);
+			           // if($this->email->send()){
+						$this->session->set_flashdata('msg_register', 
+							'<div class="alert alert-success">An email has been sent to the email address you registered with.  Please check your email inbox and click the link in that email to complete your registration.<br><br>
+		                       <span style="color:red;">Please be sure to check your Junk Mail or Spam Mail box for our system mail, and mark it as Not Spam in case it is there.</span>
+                                <br><br>
+								Thank you!
+								<br><br>
+								<br><br>
+                           </div>');
+					  // }else{
+					    $this->session->set_flashdata("email_sent","There was an error with our mailing system and your registration can not be verified.  Please <a href='<?php echo base_url()/contact-us?>'>Contact Us</a> to complete your registration.");
+					 // }
                             $this->user_model->insert_user_contact($contact_data); //  insert contact
 							/* insert in contacts table  */
                             
 							$this->session->unset_userdata('step_one');
 							$this->session->unset_userdata('step_two');
                             $user_data = 	$this->user_model->get_user_by_id($user_id);
-							$user_login_data = array('USER_ID'=>$user_data[0]->id,'USER_NAME'=>$user_data[0]->name,'USER_TYPE'=>$user_data[0]->usertype);
-							$this->session->set_userdata($user_login_data);
-
-							redirect('user/dashboard');
+							//$user_login_data = array('USER_ID'=>$user_data[0]->id,'USER_NAME'=>$user_data[0]->name,'USER_TYPE'=>$user_data[0]->usertype);
+							//$this->session->set_userdata($user_login_data);
+                      //redirect('user/login');
 					}
 			}
 
@@ -244,57 +250,149 @@ class User extends CI_Controller {
 			$this->load->view('front/user/dashboard');
 	}
 
-	function change_password()
-	{
-			 $user_id = $this->session->userdata('USER_ID');
-			if(empty($user_id)){ redirect('user/register'); }
 
-		if(isset($_POST['changepass']))
+
+	
+	function address()
+	{
+			$user_id = $this->session->userdata('USER_ID');
+			if(empty($user_id)){ redirect('user/register'); }
+			$data['result']  = $this->Front_model->get_address_by_user($user_id);
+			$this->load->view('front/user/address',$data);
+	}
+
+	function orders()
+	{
+			$user_id = $this->session->userdata('USER_ID');
+			if(empty($user_id)){ redirect('user/register'); }
+			$this->load->view('front/user/orders');
+	}
+	
+		function fetch_state()
+	   {
+	   if($this->input->post('id'))
+	  {
+	   echo $this->Front_model->fetch_state($this->input->post('id'));
+	  }
+	 }
+
+
+	function logout()
+  {
+      $this->session->unset_userdata('USER_ID');
+		  $this->session->unset_userdata('USER_NAME');
+			$this->session->unset_userdata('USER_TYPE');
+      redirect('user/login');
+  }
+
+
+  /*--------------------updated on 26-11-2018 by priyanka ------------*/
+  public function verify(){
+	   $id=$this->uri->segment('4');;
+	  if ($id != "") {
+	 	
+	 	 $user_id = $this->user_model->db_update($id);
+	 	$this->session->set_flashdata('msge','<div class="alert alert-danger">Thank you for verifying your account!
+			<br><br>
+			Trade accounts will be reviewed before being upgraded to view online
+			pricing and access to download price lists.  This may take up to 24hrs.
+			Please call if you need pricing immediately.</div>,<div><center>Login to Proceed.</center></div>	<br><br>');
+                    }else{
+                    	$this->session->set_flashdata('msge','<div class="alert alert-danger">Sorry, we can not process your request!</div>');
+                    		 }
+	 redirect('user/login');
+}
+
+   public function forgot_password()
+	{
+	  
+        if(isset($_POST['forgot_password']))
+			{
+			 $this->form_validation->set_rules('firstname', 'firstname', 'trim|required');
+			 $this->form_validation->set_rules('lastname', 'Lastname', 'trim|required');
+			 $this->form_validation->set_error_delimiters('<div class="has-error"><i class="fa fa-warning"></i>&nbsp', '</div>');
+			 if ($this->form_validation->run() == TRUE){
+                $firstname = $this->input->post('firstname');
+                $lastname = $this->input->post('lastname');
+                $email = $this->input->post('email'); 
+
+                if(!empty($email) || !empty($firstname) || !empty($lastname)){
+                  $user_data = $this->user_model->user_log($firstname,$lastname,$email);
+                    $id= @$user_data[0]->UserID;
+                    if($id !=""){
+		            	$url =  base_url('user/resetpassword/'.create_slug_reset('id='.$user_data[0]->UserID));
+		            	$this->load->library('email');
+						$this->email->from("contact@friedmanmirrors.com");
+						$this->email->to($email);
+						$this->email->set_mailtype("html");
+						$this->email->subject('Friedman Mirrors - Contact Details');
+		            	$uid = $user_data[0]->UserID;
+					    $username = $user_data[0]->firstname;
+					    $link =     "$url";
+						$message = "Hello $firstname $lastname,<br><br>\n\n";
+						$message .= "Your login name is: $username <br><br>\n\n";
+						$message .= "Please use the link below to reset your password:<br><br>\n\n";
+						$message .= "<a href='$link'>$link</a><br><br>\n\n";
+						$message .= "Thank you,<br><br>\n\n";
+						$message .= "Friedman Mirrors<br><br>\n\n";
+						//print_R($message);
+                       // $this->email->message($message);
+			           // if($this->email->send()){
+						$this->session->set_flashdata('msg', '<div class="alert alert-success">Thank you, a message has been sent to the email address you provided.  Please check your email for further instructions to update your password.</div>');
+					  // }else{
+					    $this->session->set_flashdata("email_sent","Sorry, there was an error with our mailing system.");
+					 // }
+
+					}
+
+					else{
+						$this->session->set_flashdata('msg', '<div class="alert alert-danger">Sorry, we did not find any records that match these details, please try again and be careful to spell correctly.</div>');
+					}
+                  
+		         }
+
+		         else
+		         {
+                   $this->session->set_flashdata('msg', '<div class="alert alert-success">Sorry, we did not find any records that match these details, please try again and be careful to spell correctly.</div>');
+		         }
+		     }
+		 }
+		
+			$this->load->view('front/user/forgot-password');
+	}
+
+  public function resetpassword(){
+	 $user_id = $this->uri->segment('4');
+  
+	if($user_id == ""){
+		$this->session->set_flashdata('msge','<div class="alert alert-success">Error:  We can not process this request, please contact our staff for assistance.</div>');
+	}
+
+if(isset($_POST['changepass']))
 		{
 			$post_data = $this->input->post();
-			if(empty($post_data['oldpassword']) || empty($post_data['newpassword']) || empty($post_data['confirmpassword']))
-			{
-				$this->session->set_flashdata('msge','<div class="alert alert-danger">Please fill all field</div>');
-				redirect('user/change_password');
-			}
-			else
-			{
-				 $oldpass_data = md5($post_data['oldpassword']);
-				 $form_key_pass= $post_data['form_key'];
-
-
-				if($oldpass_data==$form_key_pass)
-				{
-
-					if($post_data['newpassword']==$post_data['confirmpassword'])
+			if($post_data['newpassword']==$post_data['confirmpassword'])
 					{
 						unset($post_data['oldpassword']);
 						unset($post_data['confirmpassword']);
-						unset($post_data['form_key']);
 						$post_data['password']= md5($post_data['newpassword']);
 						unset($post_data['changepass']);
 						unset($post_data['newpassword']);						
-						$this->Front_model->update_user($user_id,$post_data);
-						$this->session->set_flashdata('msge','<div class="alert alert-success">Your password has been changed successfully</div>');
-						redirect('user/change_password');
+						$this->user_model->update_user($user_id,$post_data);
+						$this->session->set_flashdata('msge','<div class="alert alert-success">Thank you, your password has been updated .</div>');
+						//redirect('user/login');
 		            }
 		             else
 					{
-						$this->session->set_flashdata('msge','<div class="alert alert-danger">New password and Confirm password not matched.</div>');
-						redirect('user/change_password');
+						$this->session->set_flashdata('msge','<div class="alert alert-danger">New password and Confirm password not matched.Please try again.</div>');
+						//redirect('user/login');
 					}
-					}
-				else
-				{
-					$this->session->set_flashdata('msge','<div class="alert alert-danger">Old password not matched.</div>');
-					redirect('user/change_password');
-				}
-					}			
+					
+						
 		}
 		$data['RESULT']  = $this->Front_model->get_user_by_id($user_id);
-		//print_r($data['RESULT']);
-			$this->load->view('front/user/change-password',$data);
-	}
+	    $this->load->view('front/user/resetpassword',$data);
+  }
 
 	function edit_details()
 	{
@@ -369,153 +467,62 @@ class User extends CI_Controller {
 		    //  $business_type = $data['user_data'][0]->business_type;
 		      // $data['checkbox_array'] = explode(",",$business_type);
 		       //print_R($checkbox_array);
-		  //  echo "<pre>";print_r($data['user_data'] );
+		  // echo "<pre>";print_r($data['user_data'] );
               $data['country'] = $this ->Front_model->fetch_country();
 
 		      $this->load->view('front/user/edit-details',$data);
 	}
-	
-	function address()
+
+		function change_password()
 	{
-			$user_id = $this->session->userdata('USER_ID');
+			 $user_id = $this->session->userdata('USER_ID');
 			if(empty($user_id)){ redirect('user/register'); }
-			$data['result']  = $this->Front_model->get_address_by_user($user_id);
-			$this->load->view('front/user/address',$data);
-	}
 
-	function orders()
-	{
-			$user_id = $this->session->userdata('USER_ID');
-			if(empty($user_id)){ redirect('user/register'); }
-			$this->load->view('front/user/orders');
-	}
-	
-		function fetch_state()
-	   {
-	   if($this->input->post('id'))
-	  {
-	   echo $this->Front_model->fetch_state($this->input->post('id'));
-	  }
-	 }
-
-
-	function logout()
-  {
-      $this->session->unset_userdata('USER_ID');
-		  $this->session->unset_userdata('USER_NAME');
-			$this->session->unset_userdata('USER_TYPE');
-      redirect('user/login');
-  }
-
-
-  /*--------------------updated on 26-11-2018 by priyanka ------------*/
-  public function verify(){
-	   $id=$this->uri->segment('4');;
-	  if ($id != "") {
-	 	
-	 	 $user_id = $this->user_model->db_update($id);
-	 	$this->session->set_flashdata('msge','<div class="alert alert-danger">Thank you for verifying your account!
-			<br><br>
-			Trade accounts will be reviewed before being upgraded to view online
-			pricing and access to download price lists.  This may take up to 24hrs.
-			Please call if you need pricing immediately.</div>,<div><center>Login to Proceed.</center></div>	<br><br>');
-                    }else{
-                    	$this->session->set_flashdata('msge','<div class="alert alert-danger">Sorry, we can not process your request!</div>');
-                    		 }
-	  $this->load->view('front/user/login');
-}
-
-   public function forgot_password()
-	{
-	  
-        if(isset($_POST['forgot_password']))
-			{
-			 $this->form_validation->set_rules('firstname', 'firstname', 'trim|required');
-			 $this->form_validation->set_rules('lastname', 'Lastname', 'trim|required');
-			 $this->form_validation->set_error_delimiters('<div class="has-error"><i class="fa fa-warning"></i>&nbsp', '</div>');
-			 if ($this->form_validation->run() == TRUE){
-                $firstname = $this->input->post('firstname');
-                $lastname = $this->input->post('lastname');
-                $email = $this->input->post('email'); 
-
-                if(!empty($email) || !empty($firstname) || !empty($lastname)){
-                  $user_data = $this->user_model->user_log($firstname,$lastname,$email);
-                    $id= @$user_data[0]->UserID;
-                    if($id !=""){
-		            	$url =  base_url('user/resetpassword/'.create_slug_reset('id='.$user_data[0]->UserID));
-		            	$this->load->library('email');
-						$this->email->from("contact@friedmanmirrors.com");
-						$this->email->to($email);
-						$this->email->set_mailtype("html");
-						$this->email->subject('Friedman Mirrors - Contact Details');
-		            	$uid = $user_data[0]->UserID;
-					    $username = $user_data[0]->firstname;
-					    $link =     "$url";
-						$message = "Hello $firstname $lastname,<br><br>\n\n";
-						$message .= "Your login name is: $username <br><br>\n\n";
-						$message .= "Please use the link below to reset your password:<br><br>\n\n";
-						$message .= "<a href='$link'>$link</a><br><br>\n\n";
-						$message .= "Thank you,<br><br>\n\n";
-						$message .= "Friedman Mirrors<br><br>\n\n";
-						//print_R($message);die;
-                        $this->email->message($message);
-			            if($this->email->send()){
-						$this->session->set_flashdata('msg', '<div class="alert alert-success">Thank you, a message has been sent to the email address you provided.  Please check your email for further instructions to update your password.</div>');
-					   }else{
-					    $this->session->set_flashdata("email_sent","Sorry, there was an error with our mailing system.");
-					  }
-
-					}
-
-					else{
-						$this->session->set_flashdata('msg', '<div class="alert alert-danger">Sorry, we did not find any records that match these details, please try again and be careful to spell correctly.</div>');
-					}
-                  
-		         }
-
-		         else
-		         {
-                   $this->session->set_flashdata('msg', '<div class="alert alert-success">Sorry, we did not find any records that match these details, please try again and be careful to spell correctly.</div>');
-		         }
-		     }
-		 }
-		
-			$this->load->view('front/user/forgot-password');
-	}
-
-  public function resetpassword(){
-	 $user_id = $this->uri->segment('4');
-   if($user_id == ""){
-		$user_id = "";
-	}
-	if($user_id == ""){
-		message("Error:  We can not process this request, please contact our staff for assistance.");
-	}
-
-if(isset($_POST['changepass']))
+		if(isset($_POST['changepass']))
 		{
 			$post_data = $this->input->post();
-			if($post_data['newpassword']==$post_data['confirmpassword'])
+			if(empty($post_data['oldpassword']) || empty($post_data['newpassword']) || empty($post_data['confirmpassword']))
+			{
+				$this->session->set_flashdata('msge','<div class="alert alert-danger">Please fill all field</div>');
+				redirect('user/change_password');
+			}
+			else
+			{
+				 $oldpass_data = md5($post_data['oldpassword']);
+				 $form_key_pass= $post_data['form_key'];
+
+
+				if($oldpass_data==$form_key_pass)
+				{
+
+					if($post_data['newpassword']==$post_data['confirmpassword'])
 					{
 						unset($post_data['oldpassword']);
 						unset($post_data['confirmpassword']);
+						unset($post_data['form_key']);
 						$post_data['password']= md5($post_data['newpassword']);
 						unset($post_data['changepass']);
 						unset($post_data['newpassword']);						
-						$this->user_model->update_user($user_id,$post_data);
-						$this->session->set_flashdata('msge','<div class="alert alert-success">Thank you, your password has been updated .</div>');
-						//redirect('user/login');
+						$this->Front_model->update_user($user_id,$post_data);
+						$this->session->set_flashdata('msge','<div class="alert alert-success">Your password has been changed successfully</div>');
+						redirect('user/change_password');
 		            }
 		             else
 					{
-						$this->session->set_flashdata('msge','<div class="alert alert-danger">New password and Confirm password not matched.Please try again.</div>');
-						//redirect('user/login');
+						$this->session->set_flashdata('msge','<div class="alert alert-danger">New password and Confirm password not matched.</div>');
+						redirect('user/change_password');
 					}
-					
-						
+					}
+				else
+				{
+					$this->session->set_flashdata('msge','<div class="alert alert-danger">Old password not matched.</div>');
+					redirect('user/change_password');
+				}
+					}			
 		}
 		$data['RESULT']  = $this->Front_model->get_user_by_id($user_id);
-	    $this->load->view('front/user/resetpassword',$data);
-  }
+		//print_r($data['RESULT']);
+			$this->load->view('front/user/change-password',$data);
+	}
 
 }
