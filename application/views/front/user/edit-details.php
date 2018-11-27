@@ -123,9 +123,9 @@
          @$business_type = $user_data[0]->business_type;
            @$checkbox_array = explode(";",$business_type);
 
-          @$job_description = $user_data[0]->job_description;
+          @$job_description = $user_data[2]->job_description;
            @$checkbox_array_job = explode(";",$job_description);
-         // print_R($checkbox_array_job);
+          //print_R($checkbox_array);
            ?>
 
 
@@ -134,7 +134,7 @@
         <label> <input type="checkbox"   name ="business_type[]" <?php if(in_array("interior", @$checkbox_array)) {?> checked="checked"<?php } ?> value="interior"> <span class="style-bg"> Interior Design </span> </label> <br>
         <label> <input type="checkbox" <?php if(in_array("antique", @$checkbox_array)) {?> checked="checked"<?php } ?>name ="business_type[]" value="antique"> <span class="style-bg"> Antique Dealer  </span> </label><br>
         <label> <input type="checkbox" <?php if(in_array("furniture", @$checkbox_array)) {?> checked="checked"<?php } ?> name ="business_type[]" value="furniture"> <span class="style-bg"> Furniture Store</span> </label><br>
-        <label><input type="checkbox" <?php if(in_array("Contractor-Builder", @$checkbox_array)) {?> checked="checked"<?php } ?>name ="business_type[]" value="Contractor-Builder"> <span class="style-bg"> Contractor-Builder	  </span> </label><br>
+        <label><input type="checkbox" <?php if(in_array("contractor", @$checkbox_array)) {?> checked="checked"<?php } ?>name ="business_type[]" value="contractor"> <span class="style-bg"> Contractor-Builder	  </span> </label><br>
         <label><input type="checkbox"<?php if(in_array("architect", @$checkbox_array)) {?> checked="checked"<?php } ?> name ="business_type[]" value="architect"> <span class="style-bg"> Architect</span> </label>
         
         </div>
