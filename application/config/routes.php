@@ -59,6 +59,9 @@ $route['admin/logout'] = 'admin/admin/logout';
 
 
 /* front routes */
+/*update by priyanka*/
+$route['wishlist'] = 'products/add_to_wishlist';
+/*update by priyanka*/
 $route['products/(:any)'] = 'products/listing/$1';
 $route['contact-us'] = 'welcome/contact_us';
 $route['faq'] = 'welcome/faq';
