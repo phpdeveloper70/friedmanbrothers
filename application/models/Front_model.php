@@ -135,7 +135,7 @@ function fetch_state($id)
   foreach($query->result() as $row)
   {
     //print_r($row);
-   $output .= '<option value="'.$row->name.'">'.$row->name.'</option>';
+   $output .= '<option value="'.$row->name.'" >'.$row->name.'</option>';
   }
   return $output;
  }
@@ -144,6 +144,11 @@ function fetch_state($id)
   {
     $this->db->where('id',$id);
     return $this->db->update('users',$data);
+  }
+   public function update_details($data_array,$user_id)
+  {
+    $this->db->where('UserID',$user_id);
+    return $this->db->update('contacts',$data_array);
   }
 
   public function get_user_by_id($id)
@@ -156,6 +161,20 @@ function fetch_state($id)
     public function get_address_by_user($id)
   {
     $this->db->where('UserID',$id);
+    $rows = $this->db->get('contacts')->result();
+     return $rows;
+  }
+   public function search_products($keyword)
+  {
+
+    $this->db->like('ProdTitle',$keyword);
+    $this->db->or_like('Sku',$keyword);
+   return $this->db->get('products')->result();
+
+  }
+    public function fetch_user_account_data($user_id)
+  {
+    $this->db->where('UserID',$user_id);
     $rows = $this->db->get('contacts')->result();
      return $rows;
   }

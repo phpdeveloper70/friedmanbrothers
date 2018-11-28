@@ -52,18 +52,24 @@
                   </div>
                </div>
             </div>
-            <div class="col-md-6  col-lg-3">
+           <div class="col-md-6  col-lg-3">
                <div class="footer-title">
                   <h4>News and Updates</h4>
                   <div class="footer-content">
-                     <form class="newsletter" method="post">
+                     <form class="newsletter" action="<?php echo base_url('Welcome/index'); ?>"" method="post" >
                         <div class="form-group">
+                          <?php if($this->session->flashdata('msg')): ?>
+                              <p><center><?php echo $this->session->flashdata('msg'); ?></center></p>
+                          <?php endif; ?>
                            <label>Join to Receive Updates on Promotions</label>
-                           <input type="text" name="newletter" placeholder="Enter Your Email Address" />
-                           <input type="submit" name="submit" value="Signup For Newsletter" />
+
+                           <input type="text" name="email" required  placeholder="Enter Your Email Address" />
+
+                           <input type="submit" name="submit"  value="Signup For Newsletter" />
                         </div>
                      </form>
                   </div>
+                  <?php echo validation_errors(); ?>
                </div>
             </div>
          </div>

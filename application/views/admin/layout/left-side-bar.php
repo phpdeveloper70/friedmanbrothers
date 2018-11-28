@@ -26,7 +26,7 @@
          <a href="#"><i class="icon-question-sign"></i> <span>Manage Categories</span></a>
          <ul>
             <li><a href="<?php echo base_url('admin/category/listing'); ?>">Category Listing</a></li>
-            <li><a href="<?php echo base_url('admin/category/add'); ?>">Add New</a></li>
+           
          </ul>
       </li>
 
@@ -38,13 +38,28 @@
          </ul>
       </li>
 
-     <!-- <li class="submenu">
-         <a href="#"><i class="icon icon-leaf"></i> <span>Manage Language</span></a>
+     <li class="submenu">
+         <a href="#"><i class="icon icon-leaf"></i> <span>Manage Product</span></a>
          <ul>
-            <li><a href="<?php echo base_url('admin/language/listing'); ?>">Manage Language</a></li>
-            <li><a href="<?php echo base_url('admin/language/add'); ?>">Add New</a></li>
+            <li><a href="<?php echo base_url('admin/product/listing'); ?>">Product Listing</a></li>
+           
          </ul>
       </li>
+	      <li class="submenu">
+         <a href="#"><i class="icon-question-sign"></i> <span>Manage Faq</span></a>
+         <ul>
+            <li><a href="<?php echo base_url('admin/faq/listing'); ?>">Manage Faq</a></li>
+            <li><a href="<?php echo base_url('admin/faq/add'); ?>">Add New</a></li>
+         </ul>
+      </li>
+	       <li class="submenu">
+         <a href="#"><i class="icon icon-money"></i> <span>Manage Contact Details</span></a>
+         <ul>
+            <li><a href="<?php echo base_url('admin/contact/listing'); ?>">Contact List</a></li>
+           
+         </ul>
+      </li>
+	   <!--
       <li class="submenu">
          <a href="#"><i class="icon icon-money"></i> <span>Manage Height</span></a>
          <ul>
@@ -52,13 +67,7 @@
             <li><a href="<?php echo base_url('admin/height/add'); ?>">Add New</a></li>
          </ul>
       </li>
-      <li class="submenu">
-         <a href="#"><i class="icon-question-sign"></i> <span>Manage Faq</span></a>
-         <ul>
-            <li><a href="<?php echo base_url('admin/faq/listing'); ?>">Manage Faq</a></li>
-            <li><a href="<?php echo base_url('admin/faq/add'); ?>">Add New</a></li>
-         </ul>
-      </li>
+   
       <li class="submenu">
          <a href="#"><i class="icon icon-money"></i> <span>Manage Plans</span></a>
          <ul>

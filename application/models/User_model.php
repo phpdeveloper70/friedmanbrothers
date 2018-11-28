@@ -5,11 +5,16 @@ class User_model extends CI_Model
 
   function user_login($username,$password)
   {
-      $this->db->where('name',$username);
-      //$this->db->or_where('mail_user',$username);
-      $this->db->where('password',md5($password));
-      $data = $this->db->get('users');
-      return $data->result();
+      $this->db->select('users.*,contacts.email'); 
+      $this->db->from("users");
+      $this->db->join('contacts', 'contacts.UserID = users.id', 'left');
+      $this->db->where('users.name',$username);
+      $this->db->or_where('contacts.email',$username);
+      $this->db->where('users.password',md5($password));
+      $this->db->where('users.user_status',"verified");
+      $data = $this->db->get();
+       return $data->result();
+       
   }
 
   function get_user_by_id($id)
@@ -42,5 +47,44 @@ class User_model extends CI_Model
       $uid = $this->db->insert_id();
       return $uid;
   }
+
+   function update_user_contact($user_contacts_data,$user_id)
+  {
+      $this->db->where('id',$user_id);
+      return $this->db->update('contacts',$user_contacts_data);
+  }
+   function add_details($data_array){
+     $this->db->insert('contacts',$data_array);
+        
+   }
+
+
+  function user_log($firstname,$lastname ,$email)
+  {
+      $this->db->where('firstname',$firstname);
+      $this->db->where('lastname',$lastname);
+      $this->db->where('email',$email);
+      //$this->db->where('email2',$email);
+      $this->db->order_by("id", "asc");
+      $data = $this->db->get('contacts');
+      return $data->result();
+  }
+
+   public function update_user($user_id,$data)
+  {
+    $this->db->where('id',$user_id);
+    return $this->db->update('users',$data);
+  }
+   public function db_update($id)
+  {
+
+     $this->db->where('id',$id);
+     $this->db->set('user_status',"verified");
+     return $this->db->update('users');
+   
+  }
+
+
+  
 
 }

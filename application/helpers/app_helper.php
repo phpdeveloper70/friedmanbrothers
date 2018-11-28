@@ -4,6 +4,12 @@ function create_slug($string)
    $slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
    return strtolower($slug);
 }
+function create_slug_reset($string)
+{
+   $slug=preg_replace('/[^A-Za-z0-9-]+/', '/', $string);
+   return strtolower($slug);
+}
+
 
 function calc_square_ft($width,$height) {
 	$retval = roundUp(ceil($width) * ceil($height)/144, 2);

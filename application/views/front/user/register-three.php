@@ -16,6 +16,7 @@
                <div class="box-wrap-login register-reset-brd">
 
                   <form method="post">
+                      <?php echo $this->session->flashdata('msg_register'); ?>
                      <div class="form-group">
                         <input type="text" name="company" class="style-input required" placeholder="Company Name">
                         <?php echo form_error('company'); ?>
@@ -28,11 +29,11 @@
                         <div class="row">
                            <div class="col-sm-12">Which of the following best describes the activities of your company?</div>
                            <div class="col-sm-6">
-                              <label> <input type="checkbox" name="business_types[]" value="Interior Design"> <span class="style-bg"> Interior Design </span> </label>
-                              <label> <input type="checkbox" name="business_types[]" value="Antique Dealer"> <span class="style-bg"> Antique Dealer  </span> </label>
-                              <label> <input type="checkbox" name="business_types[]" value="Furniture Store"> <span class="style-bg"> Furniture Store</span> </label>
-                              <label><input type="checkbox" name="business_types[]" value="Contractor-Builder"> <span class="style-bg"> Contractor-Builder </span> </label>
-                              <label><input type="checkbox" name="business_types[]" value="Architect"> <span class="style-bg"> Architect</span> </label>
+                              <label> <input type="checkbox" name="business_types[]" value="interior"> <span class="style-bg"> Interior Design </span> </label>
+                              <label> <input type="checkbox" name="business_types[]" value="antique"> <span class="style-bg"> Antique Dealer  </span> </label>
+                              <label> <input type="checkbox" name="business_types[]" value="furniture"> <span class="style-bg"> Furniture Store</span> </label>
+                              <label><input type="checkbox" name="business_types[]" value="contractor"> <span class="style-bg"> Contractor-Builder </span> </label>
+                              <label><input type="checkbox" name="business_types[]" value="architect"> <span class="style-bg"> Architect</span> </label>
                            </div>
                            <div class="col-sm-6">
                               <label> <input type="checkbox" name="business_types[]" value="Accessory Store"> <span class="style-bg">  Accessory Store </span> </label>

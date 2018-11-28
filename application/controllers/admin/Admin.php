@@ -7,6 +7,7 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Admin_model');
+		
 	}
 
     public function listing()
@@ -18,41 +19,40 @@ class Admin extends CI_Controller
     public function index()
 	{
 		//$this->check_admin_login('IS_LOGIN');
-		if(isset($_POST['login-btn']))
-		{
-            $this->form_validation->set_rules('email', 'Email address', 'trim|required');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required');
-			$this->form_validation->set_error_delimiters('<div class="has-error"><i class="icon-warning-sign"></i>&nbsp', '</div>');
-			if($this->form_validation->run() == TRUE)
+		
+			if(isset($_POST['login-btn']))
 			{
-				$email = $this->input->post('email');
-				$password = $this->input->post('password');
-
+			
+					$this->form_validation->set_rules('email', 'Email Address', 'trim|required');
+					$this->form_validation->set_rules('password', 'Password', 'trim|required');
+					$this->form_validation->set_error_delimiters('<div class="has-error"><i class="fa fa-warning"></i>&nbsp', '</div>');
+					if ($this->form_validation->run() == TRUE)
+					{
+							$username = $this->input->post('email');
+							$password = $this->input->post('password');
+							if(!empty($username) || !empty($password))
+							{
+											$user_data = $this->Admin_model->admin_login($username,$password);
+											 
+											if(count($user_data)>0)
+											{
+													$user_login_data = array('ADMIN_ID'=>$user_data[0]->id,'USER_NAME'=>$user_data[0]->name,'USER_TYPE'=>$user_data[0]->usertype);
+				  								
+												 $this->session->set_userdata($user_login_data);
+													redirect('admin/dashboard');
+											}else
+											{
+												$this->session->set_flashdata('message','Error! Invalid login credentials.');
+												redirect('admin');
+											}
+							}
+							else
+							{
+									$this->session->set_flashdata('message','Error! Invalid login credentials.');
+									redirect('admin');
+							}
+					}
 			}
-
-			if(empty($email) || empty($password))
-			{
-				$this->session->set_flashdata('msg','<div class="alert alert-danger">Invalid login credentials. please try again</div>');
-				redirect('admin');
-			}
-            else
-			{
-				$rows = $this->Admin_model->admin_login($email,$password);
-				if(count($rows)==1)
-				{
-					   
-						$admin_data = array('ADMIN_ID'=>$rows[0]->id,'ADMIN_EMAIL'=>$rows[0]->email);
-						$this->session->set_userdata($admin_data);
-						redirect('admin/dashboard');
-					
-				}
-				else
-				{
-					$this->session->set_flashdata('msg','<div class="alert alert-danger">Invalid login credentials. please try again</div>');
-					redirect('admin');
-				}
-			}
-		}
 		$this->load->view('admin/login');
 	}
 
