@@ -93,5 +93,46 @@ class Products extends CI_Controller {
 			}
 
 	}
+	
+	
+   	/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
+
+	function add_to_wishlist()
+	{
+		
+		$userid = $this->session->userdata('USER_ID');
+		//print_R($userid);
+		//die;
+		$msg = '';
+		if(empty($userid))
+		{
+			$msg =  2;
+		}
+		else
+		{
+			if(isset($_POST) && !empty($_POST['prodid']))
+			{
+				$wishlist_data = $this->Product_model->check_wishlist_data($userid,$_POST['prodid']);
+			
+				if(count($wishlist_data)==0)
+				{	
+					$ins_data['userid']  = $userid;
+					$ins_data['prodid']  = $_POST['prodid'];
+					
+					
+					$this->Product_model->save_wishlist_data($ins_data);
+				}
+				$msg =  1;
+			}
+			else
+			{
+				$msg =  0;
+			}	
+		}
+		echo $msg;
+       
+			
+	}
+
 
 }
