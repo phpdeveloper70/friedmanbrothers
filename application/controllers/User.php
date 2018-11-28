@@ -8,6 +8,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 	    $this->load->model('Front_model');
+	    $this->load->model('Product_model');
 	}
 
 	public function login()
