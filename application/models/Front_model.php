@@ -178,12 +178,14 @@ function fetch_state($id)
     $rows = $this->db->get('contacts')->result();
      return $rows;
   }
-	  public function selling_products()
+  
+  public function selling_products()
   {
 
      $this->db->where('ProdTitle!=','');
     $data = $this->db->get('products', 8, 8);
     return $data->result();
   }
+
 }
 ///home/glamourbook/public_html/video/admin/addvideo.php
