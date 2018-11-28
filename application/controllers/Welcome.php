@@ -23,10 +23,11 @@ class Welcome extends CI_Controller {
             $data = $this->Welcome_model->add_newletter($data);
 			$this->session->set_flashdata('msg','Newsletter successfully saved.');
             redirect();
+			
         }
     }
-     
-     $this->load->view('front/home');
+      $data['result'] = $this->Front_model->selling_products();
+     $this->load->view('front/home',$data);
  }
 
 	public function about_us()
