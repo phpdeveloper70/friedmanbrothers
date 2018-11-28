@@ -6,7 +6,9 @@ class Products extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Welcome_model');
-		 $this->load->model('Front_model');
+		$this->load->model('Front_model');
+		$this->load->model('Product_model');
+
 	}
 
 
