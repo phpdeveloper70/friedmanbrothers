@@ -1,0 +1,211 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Front_model extends CI_Model
+{
+  function get_top_category()
+  {
+    //SELECT * FROM departments WHERE DeptType='Products' AND published_state='yes' ORDER BY DisplayOrder
+    $this->db->where('DeptType','Products');
+    $this->db->where('published_state','yes');
+    $this->db->order_by('DisplayOrder');
+    $data = $this->db->get('departments');
+    return $data->result();
+  }
+
+  function get_product_list($dept_id,$cat_id)
+  {
+      //SELECT * FROM products WHERE DeptID='$dept' AND CatID='$cat' AND NOT published_state='no' ORDER BY $orderby;
+      $this->db->where('DeptID',$dept_id);
+      if(!empty($cat_id))
+      {
+          $this->db->where('CatID',$cat_id);
+      }
+      $this->db->where('published_state','yes');
+      $data = $this->db->get('products');
+      return $data->result();
+  }
+
+  function count_product_list($dept_id,$cat_id)
+  {
+      //SELECT * FROM products WHERE DeptID='$dept' AND CatID='$cat' AND NOT published_state='no' ORDER BY $orderby;
+      $this->db->where('DeptID',$dept_id);
+      $this->db->where('CatID',$cat_id);
+      $this->db->where('published_state','yes');
+      $data = $this->db->get('products');
+      return count($data->result());
+  }
+
+  function get_department_category($dept_id)
+  {
+     //SELECT * FROM categories WHERE DeptID=? ORDER BY DisplayOrder;","i",array($id)
+     $this->db->where('DeptID',$dept_id);
+     $this->db->order_by('DisplayOrder');
+     $data = $this->db->get('categories');
+     return $data->result();
+  }
+
+  function get_category_by_id($cat_id)
+  {
+     //SELECT * FROM categories WHERE id=? ORDER BY DisplayOrder;","i",array($id)
+     $this->db->where('id',$cat_id);
+     $data = $this->db->get('categories');
+     $this->db->where('published_state','yes');
+     $this->db->order_by('DisplayOrder');
+     return $data->result();
+  }
+
+  function get_department_category_single_id($dept_id)
+  {
+     //SELECT * FROM categories WHERE DeptID=? ORDER BY DisplayOrder;","i",array($id)
+     $this->db->where('DeptID',$dept_id);
+     $this->db->where('isHeader !=','x');
+     $this->db->order_by('DisplayOrder');
+     $data = $this->db->get('categories')->result();
+     return (count($data)>0)?$data[0]->id:'';
+  }
+
+  function get_department_by_id($id)
+  {
+      //SELECT * FROM departments WHERE id=?
+      $this->db->where('id',$id);
+      $data = $this->db->get('departments');
+      return $data->result();
+  }
+
+  function get_product_by_sku($Sku)
+  {
+      $this->db->where('Sku',$Sku);
+      $data = $this->db->get('products');
+      return $data->result();
+  }
+
+  function get_product_by_id($id)
+  {
+      //SELECT * FROM products WHERE id=?
+      $this->db->where('id',$id);
+      $data = $this->db->get('products');
+      return $data->result();
+  }
+
+  function get_related_products($Sku)
+  {
+    //SELECT * FROM related_skus WHERE Sku=?
+    $this->db->where('Sku',$Sku);
+    $data = $this->db->get('related_skus');
+    return $data->result();
+  }
+
+  function get_related_images($pid)
+  {
+    //SELECT * FROM related_imgs WHERE row_type='related_img' AND prodid=? AND flag_default='N'
+    $this->db->where('prodid',$pid);
+    $this->db->where('row_type','related_img');
+    $this->db->where('flag_default','N');
+    $data = $this->db->get('related_imgs');
+    return $data->result();
+  }
+
+  function get_default_image($product_id)
+  {
+    $query = $this->db->query("SELECT * FROM related_imgs INNER JOIN high_resolution_imgs ON related_imgs.high_resolution_id = high_resolution_imgs.id AND related_imgs.prodid='$product_id' AND related_imgs.flag_default = 'Y'");
+    return $query->result();
+  }
+
+  function get_product_size($pid)
+  {
+    //SELECT * FROM products_data WHERE row_type='size' AND prodid=30293 ORDER BY display_order
+    $this->db->where('prodid',$pid);
+    $this->db->where('row_type','size');
+    $data = $this->db->get('products_data');
+    return $data->result();
+  }
+
+  /*----change on 22 nov by priyanka ====*/
+function fetch_country()
+ {
+  $this->db->order_by("name", "ASC");
+  $query = $this->db->get("countries");
+  return $query->result();
+ }
+
+function fetch_country_name($id)
+ {
+  $this->db->where('id', $id);
+  $query = $this->db->get("countries");
+  return $query->row()->name;;
+ }
+
+  function fetch_country_code($id)
+ {
+  $this->db->where('id', $id);
+  $query = $this->db->get("countries");
+  return $query->row()->sortname;;
+ }
+
+function fetch_state($id)
+ {
+  $this->db->where('country_id', $id);
+  $this->db->order_by('name', 'ASC');
+  $query = $this->db->get('states');
+  $output = '<option value="">Select State</option>';
+  foreach($query->result() as $row)
+  {
+    //print_r($row);
+   $output .= '<option value="'.$row->name.'" >'.$row->name.'</option>';
+  }
+  return $output;
+ }
+
+ public function update_user($id,$data)
+  {
+    $this->db->where('id',$id);
+    return $this->db->update('users',$data);
+  }
+   public function update_details($data_array,$user_id)
+  {
+    $this->db->where('UserID',$user_id);
+    return $this->db->update('contacts',$data_array);
+  }
+
+  public function get_user_by_id($id)
+  {
+    $this->db->where('id',$id);
+    $rows = $this->db->get('users')->result();
+     return $rows;
+  }
+
+    public function get_address_by_user($id)
+  {
+    $this->db->where('UserID',$id);
+    $rows = $this->db->get('contacts')->result();
+     return $rows;
+  }
+   public function search_products($keyword)
+  {
+
+    $this->db->like('ProdTitle',$keyword);
+    $this->db->or_like('Sku',$keyword);
+   return $this->db->get('products')->result();
+
+  }
+    public function fetch_user_account_data($user_id)
+  {
+    $this->db->where('UserID',$user_id);
+    $rows = $this->db->get('contacts')->result();
+     return $rows;
+  }
+	  public function selling_products()
+  {
+
+     $this->db->where('ProdTitle!=','');
+    $data = $this->db->get('products', 8, 8);
+    return $data->result();
+  }
+  	  public function get_testimonial()
+  {
+	   $this->db->where('status','1');
+    $data = $this->db->get('tbl_testimonials');
+    return $data->result();
+  }
+}
+///home/glamourbook/public_html/video/admin/addvideo.php
