@@ -527,7 +527,7 @@ if(isset($_POST['changepass']))
 	}
 	
 	/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
-		function my_wishlist()
+			function my_wishlist()
 	{
 		$userid = $this->session->userdata('USER_ID');
 		if(empty($userid)){ redirect('user/login'); }
@@ -536,7 +536,14 @@ if(isset($_POST['changepass']))
 
 		$data['WISHLIST']  = $this->Product_model->get_wishlist_data($userid);	
 		//print_R($data['WISHLIST'] ); 	
-		$this->load->view('front/user/wishlist',$data);
+		$this->load->view('front/user/wishllist',$data);
+	}
+    public function remove_wishlist()
+	{
+		$args = func_get_args();
+		
+		$this->Product_model->delete_wishlist($args[0]);
+		redirect('user/my_wishlist');
 	}
 
 }
