@@ -122,7 +122,7 @@
 <script type="text/javascript">
 $(".wishilist").click(function(){
       var prodid = $(this).attr("data_id");
-      alert(prodid);
+      //alert(prodid);
       var wurl = '<?php echo base_url('wishlist');?>';
       $.ajax({
         url:wurl,
