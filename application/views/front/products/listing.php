@@ -84,7 +84,7 @@
                                    <!--   
                                     <a href="#" class="wishilist" onclick= "add_wish('<?php echo $product->id?>')"><i class="fa fa-heart"></i></a>  -->
 
-                                     <button type="button"  class="wishilist" title=" Add to Cart" data_id="<?php echo $product->id; ?>"><i class="fa fa-heart"></i></button> 
+                                     <button type="button"  class="wishilist" title=" Add to Wishlist" data_id="<?php echo $product->id; ?>"><i class="fa fa-heart"></i></button> 
 
 
                                     </div>
