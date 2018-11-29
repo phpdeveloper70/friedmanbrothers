@@ -1,0 +1,67 @@
+<?php $category = $this->front_model->get_category_by_id($category_id); ?>
+<!doctype html>
+<html>
+   <head>
+      <?php $this->load->view('front/layout/head'); ?>
+   </head>
+   <body>
+      <?php $this->load->view('front/layout/header'); ?>
+      <!-- Breadcrumb --->
+      <div class="page-title">
+         <div class="container">
+            <h4><?php echo $department[0]->DeptTitle; ?> Collection</h4>
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="#">Home</a></li>
+               <li class="breadcrumb-item active" aria-current="page"><?php echo $department[0]->DeptTitle; ?> Collection</li>
+            </ol>
+         </div>
+      </div>
+      <!---  Main Inner Wrapper --->
+      <div class="wraper-main-inner pb-0">
+	<div class="container">
+		<!-- Text Wraper --->
+		<div class="about-brother text-center pb-5">
+		<h2>Friedman Brothers <?php echo $department[0]->DeptTitle; ?></h2>
+		<p><?php echo strip_tags($category[0]->CatDescription); ?></p>
+	</div>
+	</div> <!-- End Container -->
+	<div class="main-cornices">
+  <?php $k = 0; foreach($productdata as $product){ $k++; ?>
+    <?php $default_r_img = $this->front_model->get_default_image($product->id);
+          if(count($default_r_img)>0){
+          $imgpath = base_url().choose_image_size($default_r_img[0]->img_path,"thumb");
+          $large_image = base_url().choose_image_size($default_r_img[0]->img_path,"large");
+        }else{ $large_image = ''; }
+    ?>
+	<div class="cornices-wrap <?php echo ($k%2==0)?'back-img':'back-blue'; ?>">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="row align-items-center">
+          <div class="container">
+			<div class="style-wrap">
+				<div class="style-img-wrap">
+					<img src="<?php echo str_replace('_sm','_lg',$large_image); ?>">
+				</div>
+				<div class="style-number">
+          <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>">
+					       <span class="figure-item"><?php echo $product->ProdTitle; ?> Style# <?php echo $product->Sku; ?></span>
+          </a>
+					<span class="vertical-line">&nbsp;</span>
+					<a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>" class="btn know-more bg-white">More Info<i class="fa fa-caret-right"></i></a>
+				</div>
+			</div>
+		</div>
+
+				</div>
+			</div>
+		</div> <!-- End Container -->
+	</div>
+<?php } ?>
+
+</div>
+
+</div>
+      <!-- End -->
+      <?php $this->load->view('front/layout/footer'); ?>
+   </body>
+</html>
