@@ -65,7 +65,7 @@ class Product_model extends CI_Model
 	
 	public function delete_wishlist($id)
 	{
-		$this->db->where('id',$id);
+		$this->db->where('prodid',$id);
 		$this->db->delete('favorites');
 	}
  	
