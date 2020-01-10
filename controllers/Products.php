@@ -8,7 +8,6 @@ class Products extends CI_Controller {
 		$this->load->model('Welcome_model');
 		$this->load->model('Front_model');
 		$this->load->model('Product_model');
-
 	}
 
 
@@ -96,8 +95,7 @@ class Products extends CI_Controller {
 
 	}
 	
-	
-   	/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
+/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
 
 	function add_to_wishlist()
 	{
@@ -135,6 +133,7 @@ class Products extends CI_Controller {
        
 			
 	}
+
 
 
 }

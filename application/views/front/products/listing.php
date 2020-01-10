@@ -80,7 +80,13 @@
                                     <img src="<?php echo base_url('assets/front/images/most-3.jpg'); ?>">
                                     <div class="hoverbox">
                                        <a href="<?php echo base_url('product-detail/'.create_slug($product->ProdTitle.$product->Sku).'?pid='.$product->id); ?>" class="view-prod">View Product</a>
-                                       <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
+
+                                   <!--   
+                                    <a href="#" class="wishilist" onclick= "add_wish('<?php echo $product->id?>')"><i class="fa fa-heart"></i></a>  -->
+
+                                     <button type="button"  class="wishilist" title=" Add to Wishlist" data_id="<?php echo $product->id; ?>"><i class="fa fa-heart"></i></button> 
+
+
                                     </div>
                                  </div>
                                  <div class="description">
@@ -113,3 +119,33 @@
       <?php $this->load->view('front/layout/footer'); ?>
    </body>
 </html>
+<script type="text/javascript">
+$(".wishilist").click(function(){
+      var prodid = $(this).attr("data_id");
+      //alert(prodid);
+      var wurl = '<?php echo base_url('wishlist');?>';
+      $.ajax({
+        url:wurl,
+        type:'POST',
+        dataType:'json',
+        data:{"prodid":prodid},
+        success: function(data){
+       
+         if(data=="2"){
+           
+          window.location.replace("<?php echo base_url('User/login');?>");
+         }else{
+            
+          alert("Added To Wishlist");
+         }
+
+      }
+    });
+    });
+
+
+
+  
+</script>
+
+

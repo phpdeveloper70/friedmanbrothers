@@ -526,8 +526,9 @@ if(isset($_POST['changepass']))
 			$this->load->view('front/user/change-password',$data);
 	}
 	
-	/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
-			function my_wishlist()
+	
+/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
+		function my_wishlist()
 	{
 		$userid = $this->session->userdata('USER_ID');
 		if(empty($userid)){ redirect('user/login'); }

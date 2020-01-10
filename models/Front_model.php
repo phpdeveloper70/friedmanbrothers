@@ -95,6 +95,22 @@ class Front_model extends CI_Model
     return $data->result();
   }
 
+  function get_related_images($pid)
+  {
+    //SELECT * FROM related_imgs WHERE row_type='related_img' AND prodid=? AND flag_default='N'
+    $this->db->where('prodid',$pid);
+    $this->db->where('row_type','related_img');
+    $this->db->where('flag_default','N');
+    $data = $this->db->get('related_imgs');
+    return $data->result();
+  }
+
+  function get_default_image($product_id)
+  {
+    $query = $this->db->query("SELECT * FROM related_imgs INNER JOIN high_resolution_imgs ON related_imgs.high_resolution_id = high_resolution_imgs.id AND related_imgs.prodid='$product_id' AND related_imgs.flag_default = 'Y'");
+    return $query->result();
+  }
+
   function get_product_size($pid)
   {
     //SELECT * FROM products_data WHERE row_type='size' AND prodid=30293 ORDER BY display_order
@@ -178,14 +194,18 @@ function fetch_state($id)
     $rows = $this->db->get('contacts')->result();
      return $rows;
   }
-  
-  public function selling_products()
+	  public function selling_products()
   {
 
      $this->db->where('ProdTitle!=','');
     $data = $this->db->get('products', 8, 8);
     return $data->result();
   }
-
+  	  public function get_testimonial()
+  {
+	   $this->db->where('status','1');
+    $data = $this->db->get('tbl_testimonials');
+    return $data->result();
+  }
 }
 ///home/glamourbook/public_html/video/admin/addvideo.php

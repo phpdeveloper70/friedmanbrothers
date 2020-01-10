@@ -40,7 +40,8 @@ class Product_model extends CI_Model
 		$this->db->order_by("id");
 	 return $this->db->get('departments')->result();
 	}
- 	/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
+	
+	  	/*=====Added By priiyanka on 28 nov 18 for add whishlist============*/
 
 		public function check_wishlist_data($userid,$prodid)
 	{
@@ -60,11 +61,12 @@ class Product_model extends CI_Model
 		$this->db->from('favorites as wish');
 		$this->db->join('products as product','product.id = wish.prodid','inner');
 		$this->db->where('wish.userid',$userid);
+		//$this->db->limit(4);
 		return $this->db->get()->result();
 	}
 	
 	public function delete_wishlist($id)
-	{
+	{    // print_R($id);die;
 		$this->db->where('prodid',$id);
 		$this->db->delete('favorites');
 	}

@@ -155,7 +155,7 @@
                         <div class="overlay-text">
                            <h3>Mirrors</h3>
                            <p>Check Out Full Collection of Mirrors</p>
-                           <a href="#"><i class="fa fa-angle-right"></i></a>
+                           <a href="<?php echo base_url('products/mirrors?deptid=2'); ?>"><i class="fa fa-angle-right"></i></a>
                         </div>
                      </div>
                   </div>
@@ -165,7 +165,7 @@
                         <div class="overlay-text">
                            <h3>Comices Designs</h3>
                            <p>Check Out Full Collection of Comices</p>
-                           <a href="#"><i class="fa fa-angle-right"></i></a>
+                           <a href="<?php echo base_url('products/cornices?deptid=5'); ?>"><i class="fa fa-angle-right"></i></a>
                         </div>
                      </div>
                   </div>
@@ -181,7 +181,7 @@
                         <div class="overlay-text">
                            <h3>Tables</h3>
                            <p>Check Out table Collection</p>
-                           <a href="#"><i class="fa fa-angle-right"></i></a>
+                           <a href="<?php echo base_url('products/tables?deptid=4'); ?>"><i class="fa fa-angle-right"></i></a>
                         </div>
                      </div>
                   </div>
@@ -192,7 +192,8 @@
                         <div class="overlay-text">
                            <h3>Hardware</h3>
                            <p>Check Out hardware Collection</p>
-                           <a href="#"><i class="fa fa-angle-right"></i></a>
+                           <a href="<?php echo base_url('products/window-hardware-window-hardware?deptid=8&cat_id=1192'); ?>"><i class="fa fa-angle-right"></i></a>
+                          
                         </div>
                      </div>
                   </div>
@@ -203,7 +204,7 @@
                         <div class="overlay-text">
                            <h3>Scones</h3>
                            <p>Check Out Scones Collection</p>
-                           <a href="#"><i class="fa fa-angle-right"></i></a>
+                           <a href="<?php echo base_url('products/sconces?deptid=3'); ?>"><i class="fa fa-angle-right"></i></a>
                         </div>
                      </div>
                   </div>
@@ -214,7 +215,7 @@
                         <div class="overlay-text">
                            <h3>Brackets</h3>
                            <p>Check Out Brackets Collection</p>
-                           <a href="#"><i class="fa fa-angle-right"></i></a>
+                           <a href="<?php echo base_url('products/more-brackets?deptid=8&cat_id=1068'); ?>"><i class="fa fa-angle-right"></i></a>
                         </div>
                      </div>
                   </div>
@@ -234,6 +235,8 @@
             </div>
             <div class="product-wrapper">
                <div class="row">
+
+                  <?php foreach($result as $row){?>
                   <div class="col-md-6  col-lg-3">
                      <div class="main-box">
                         <div class="img-wrap">
@@ -244,123 +247,26 @@
                            </div>
                         </div>
                         <div class="description">
-                           <span>La Perla Mirror</span>
-                           <small>Style#: 7637</small>
+                           <span><?php echo $row->ProdTitle ?></span>
+                           <small>Style#: <?php echo $row->Sku?></small>
                         </div>
                      </div>
                   </div>
+               <?php }?>
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/img-2.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>Harlequin Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+                 
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/img-3.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>Park Lodge Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+              
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/img-4.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>The Altonbury Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+                
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/img-2.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>Harlequin Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+              
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/img-3.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>Park Lodge Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+                
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/most-3.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>La Perla Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+              
                   <!-- Column-1 -->
-                  <div class="col-md-6  col-lg-3">
-                     <div class="main-box">
-                        <div class="img-wrap">
-                           <img src="<?php echo base_url('assets/front/'); ?>images/most-3.jpg">
-                           <div class="hoverbox">
-                              <a href="#" class="view-prod">View Product</a>
-                              <a href="#" class="wishilist"><i class="fa fa-heart"></i></a>
-                           </div>
-                        </div>
-                        <div class="description">
-                           <span>La Perla Mirror</span>
-                           <small>Style#: 7637</small>
-                        </div>
-                     </div>
-                  </div>
+               
                   <!-- Column-1 -->
                </div>
                <!-- Row End --->

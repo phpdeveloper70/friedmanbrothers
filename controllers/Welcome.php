@@ -28,6 +28,7 @@ class Welcome extends CI_Controller {
         }
     }
       $data['result'] = $this->Front_model->selling_products();
+	  $data['testimonial'] = $this->Front_model->get_testimonial();
      $this->load->view('front/home',$data);
  }
 
@@ -133,5 +134,7 @@ class Welcome extends CI_Controller {
 			$c_id = $_POST['cid'];
 			echo $this->front_model->fetch_state($c_id);
 	}
+	
+
 
 }

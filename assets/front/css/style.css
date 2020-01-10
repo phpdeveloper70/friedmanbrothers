@@ -335,6 +335,7 @@ background: #171771;
 .wishilist {
     float: right;
     width: 48px;
+    background: #171771;
     color: #fff;
     text-align: center;
     border-left: 2px solid #fff;

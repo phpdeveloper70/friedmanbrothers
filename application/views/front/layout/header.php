@@ -54,7 +54,7 @@
       <div class="mobile-cart-section">
          <ul class="list-inline navbar-right right-item">
             <li class="list-inline-item"><a href="#"><i class="fa fa-bell"></i></a></li>
-            <li class="list-inline-item"><a href="#"><i class="fa fa-heart"></i></a></li>
+            <li class="list-inline-item"><a href="<?php echo base_url("User/my_wishlist")?>"><i class="fa fa-heart"></i></a></li>
          </ul>
       </div>
    </div>
